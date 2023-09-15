@@ -1,11 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 $redColor: red;
 
 h1 {
-  transform: translate(20px, 10px);
   color: $redColor;
   user-select: none;
   font-family: 'Font';
   background-image: url('./img.jpeg');
+  transition: 0.5s;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 }
 
 @font-face {
