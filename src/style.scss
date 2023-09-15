@@ -1,0 +1,14 @@
+$redColor: red;
+
+h1 {
+  transform: translate(20px, 10px);
+  color: $redColor;
+  user-select: none;
+  font-family: 'Font';
+  background-image: url('./img.jpeg');
+}
+
+@font-face {
+  font-family: 'Font';
+  src: url('font1.woff2') format('woff2');
+}
