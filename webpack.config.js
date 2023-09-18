@@ -25,7 +25,7 @@ const rules = [
           postcssOptions: {
             plugins: [
               ['postcss-preset-env', {}],
-              // ['tailwindcss', {}],
+              [tailwindcss, {}],
             ],
           },
         },
