@@ -13,8 +13,8 @@ plugins = [
 module.exports = merge(webpackConfig, {
   mode: 'production',
   target: 'browserslist',
-  plugins,
   devtool: false,
+  plugins,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[fullhash].js',

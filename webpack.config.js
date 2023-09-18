@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const tailwindcss = require('tailwindcss');
 
 const rules = [
   {
@@ -23,12 +24,8 @@ const rules = [
         options: {
           postcssOptions: {
             plugins: [
-              [
-                'postcss-preset-env',
-                {
-                  // Options
-                },
-              ],
+              ['postcss-preset-env', {}],
+              // ['tailwindcss', {}],
             ],
           },
         },
@@ -76,7 +73,6 @@ module.exports = {
       hash: true,
       template: path.resolve(__dirname, './src/index.html'),
     }),
-    new MiniCssExtractPlugin(),
   ],
   output: {
     clean: true,
