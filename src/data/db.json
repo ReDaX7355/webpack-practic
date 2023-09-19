@@ -6,6 +6,7 @@
       "description": "There was an error when starting the program",
       "applicant_id": 3,
       "create_date": "19.09.2023 14:30",
+      "completed_date": "19.09.2023 15:12",
       "type_request": "incident????????",
       "support_id": 6,
       "priority": "high",
@@ -17,8 +18,9 @@
       "description": "Please look at my mouse, it does not work",
       "applicant_id": 2,
       "create_date": "19.09.2023 16:23",
+      "completed_date": "",
       "type_request": "incident????????",
-      "support_id": null,
+      "support_id": false,
       "priority": null,
       "completed": false
     }
