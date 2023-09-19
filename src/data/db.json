@@ -1,0 +1,70 @@
+{
+  "requests": [
+    {
+      "id": 153267,
+      "title": "Error in launch programm",
+      "description": "There was an error when starting the program",
+      "applicant_id": 3,
+      "create_date": "19.09.2023 14:30",
+      "type_request": "incident????????",
+      "support_id": 6,
+      "priority": "high",
+      "completed": true
+    },
+    {
+      "id": 153268,
+      "title": "Don`t work computer mouse",
+      "description": "Please look at my mouse, it does not work",
+      "applicant_id": 2,
+      "create_date": "19.09.2023 16:23",
+      "type_request": "incident????????",
+      "support_id": null,
+      "priority": null,
+      "completed": false
+    }
+  ],
+  "massages": [
+    {
+      "request_id": 153267,
+      "create_date": "19.09.2023 15:10",
+      "only_support": true,
+      "massage": "Reset the session in the license manager"
+    },
+    {
+      "request_id": 153267,
+      "create_date": "19.09.2023 15:12",
+      "only_support": false,
+      "massage": "The problem was solved by restarting the computer and resetting the session in the license manager"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "full_name": "Петров Алексей Евгеньевич",
+      "login": "apetrov",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "full_name": "Ветрова Анастасия Сергеевна",
+      "login": "avetrova",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "full_name": "Новиков Сергей Витальевич",
+      "login": "snovikov",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "full_name": "Иванов Иван Иванович",
+      "login": "iivanov",
+      "password": "12345",
+      "role": "support"
+    }
+  ]
+}
