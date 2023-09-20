@@ -1,0 +1,26 @@
+{
+  "target": "ES6",
+  "include": ["./src"],
+  "exclude": ["node_modules"],
+  "forceConsistentCasingInFileNames": true,
+  "allowSyntheticDefaultImports": true,
+  "esModuleInterop": true,
+  "jsx": "preserve",
+
+  "compilerOptions": {
+    // "strict": true
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "allowUnreachableCode": false
+  }
+}
