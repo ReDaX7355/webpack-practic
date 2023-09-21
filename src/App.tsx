@@ -1,23 +1,12 @@
 import React from 'react';
 import { getRequestsByKey, searchRequests } from './api/requests';
+import { Link } from 'react-router-dom';
 
 const App = () => {
-  getRequestsByKey('support_id', 'false');
-  const [searchResults, setSearchResults] = React.useState([]);
-
-  const hundleSearch = (value) => {
-    setTimeout(() => {
-      const results = searchRequests(value);
-      setSearchResults(results);
-    }, 1000);
-  };
-
   return (
     <div>
-      <h1 className="container mx-auto text-3xl font-bold bg-red-200 py-6 px-3 dark:bg-gray-600">
-        Welcome
-      </h1>
-      <input type="text" onChange={(e) => hundleSearch(e.value)} />
+      <h3>App</h3>
+      <Link to="/data">Data</Link>
     </div>
   );
 };
