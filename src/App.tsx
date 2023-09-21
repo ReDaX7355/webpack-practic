@@ -7,8 +7,8 @@ const App = () => {
 
   const hundleSearch = (value) => {
     setTimeout(() => {
-      const resulsts = searchRequests(value);
-      setSearchResults(resulsts);
+      const results = searchRequests(value);
+      setSearchResults(results);
     }, 1000);
   };
 
