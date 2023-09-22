@@ -6,6 +6,7 @@
     "target": "ES2016",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "jsx": "react",
 
     // "strict": true

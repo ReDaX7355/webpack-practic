@@ -4,9 +4,7 @@ import { Outlet } from 'react-router-dom';
 const Root = () => {
   return (
     <div>
-      <h1 className="responsive mx-auto text-3xl font-bold bg-red-200 py-6 px-3 dark:bg-gray-600">
-        Root
-      </h1>
+      <h1 className="container mx-auto px-3 py-6 text-3xl font-bold">Root</h1>
       <Outlet />
     </div>
   );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { getRequestsByKey, searchRequests } from './api/requests';
 import { Link } from 'react-router-dom';
 
 const App = () => {

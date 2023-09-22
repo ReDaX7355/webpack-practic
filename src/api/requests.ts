@@ -17,9 +17,13 @@ async function getRequests(query: string, endpoint = SERVER_URL) {
   }
 }
 
-export const getRequestById = (id) => getRequests(`id=${id}`);
-export const getRequestsByKey = (key, value) => getRequests(`${key}=${value}`);
-export const searchRequests = (value) => getRequests(`q=${value}`);
+export const getRequestById = (id: string | number) => getRequests(`id=${id}`);
+
+export const getRequestsByKey = (key: string, value: string) =>
+  getRequests(`${key}=${value}`);
+
+export const searchRequests = (value: string | number) =>
+  getRequests(`q=${value}`);
 
 // async function getTodos(query: string, endpoint = SERVER_URL) {
 //   try {

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { getRequestsByKey, searchRequests } from './api/requests';
+import { getRequestsByKey } from './api/requests';
 import { Link } from 'react-router-dom';
 
 const Data = () => {
-  const [requests, setRequests] = useState(null);
+  const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    setRequests(getRequestsByKey('support_iddd', 'false'));
+    const data = getRequestsByKey('support_id', 'false');
+    setRequests();
   }, []);
 
   return (
@@ -14,9 +15,9 @@ const Data = () => {
       <h3>Data</h3>
       <Link to="/">App</Link>
       <hr />
-      <div className="requests">
+      <div>
         {requests.map((item) => (
-          <div>
+          <div key={item.id}>
             <h2>{item.title}</h2>
             <div>{item.create_date}</div>
           </div>
