@@ -32,6 +32,21 @@ module.exports = {
     quotes: ['warn', 'single'],
     semi: ['warn', 'always'],
     camelcase: ['error'],
+    'no-console': ['error'],
+    'no-empty': ['error'],
+    'no-empty-function': ['error'],
+    'require-await': ['error'],
+
+    'arrow-spacing': ['warn', { before: true, after: true }],
+    'block-spacing': ['warn'],
+    'brace-style': ['warn', '1tbs'],
+    'implicit-arrow-linebreak': ['error'],
+    'jsx-quotes': ['warn', 'prefer-double'],
+    'key-spacing': ['warn', { beforeColon: false }],
+    'keyword-spacing': ['warn'],
+    'no-multiple-empty-lines': ['warn', { max: 2, maxEOF: 0 }],
+    'space-infix-ops': ['warn'],
+    'switch-colon-spacing': ['warn'],
   },
   settings: {
     tailwindcss: {
