@@ -6,8 +6,9 @@ const Data = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    const data = getRequestsByKey('support_id', 'false');
-    setRequests();
+    fetch('http://localhost:3000/requests/?_expand=user')
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }, []);
 
   return (

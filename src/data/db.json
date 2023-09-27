@@ -8,7 +8,7 @@
       "create_date": "19.09.2023 14:30",
       "completed_date": "19.09.2023 15:12",
       "type_request": "incident????????",
-      "support_id": 6,
+      "userId": 6,
       "priority": "high",
       "completed": true
     },
@@ -20,20 +20,20 @@
       "create_date": "19.09.2023 16:23",
       "completed_date": "",
       "type_request": "incident????????",
-      "support_id": false,
+      "userId": 3,
       "priority": null,
       "completed": false
     }
   ],
   "massages": [
     {
-      "request_id": 153267,
+      "requestId": 153267,
       "create_date": "19.09.2023 15:10",
       "only_support": true,
       "massage": "Reset the session in the license manager"
     },
     {
-      "request_id": 153267,
+      "requestId": 153267,
       "create_date": "19.09.2023 15:12",
       "only_support": false,
       "massage": "The problem was solved by restarting the computer and resetting the session in the license manager"
