@@ -7,7 +7,7 @@
       "applicant_id": 3,
       "create_date": "19.09.2023 14:30",
       "completed_date": "19.09.2023 15:12",
-      "type_request": "incident????????",
+      "type_request": "incident",
       "userId": 6,
       "priority": "high",
       "completed": true
@@ -19,9 +19,9 @@
       "applicant_id": 2,
       "create_date": "19.09.2023 16:23",
       "completed_date": "",
-      "type_request": "incident????????",
-      "userId": 3,
-      "priority": null,
+      "type_request": "incident",
+      "userId": 0,
+      "priority": "",
       "completed": false
     }
   ],
