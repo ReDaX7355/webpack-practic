@@ -2,9 +2,9 @@
   "requests": [
     {
       "id": 153267,
-      "title": "Error in launch programm",
-      "description": "There was an error when starting the program",
-      "applicant_id": 3,
+      "title": "Ошибка при запуске программы",
+      "description": "Добрый день! Появилась ошибка при запуске программы. Прошу исправить.",
+      "applicant": "Новиков Сергей Витальевич",
       "create_date": "19.09.2023 14:30",
       "completed_date": "19.09.2023 15:12",
       "type_request": "incident",
@@ -14,31 +14,61 @@
     },
     {
       "id": 153268,
-      "title": "Don`t work computer mouse",
-      "description": "Please look at my mouse, it does not work",
-      "applicant_id": 2,
+      "title": "Не работает компьютерная мышь",
+      "description": "Добрый день! Не работает компьютерная мышь! Прошу заменить.",
+      "applicant": "Ветрова Анастасия Сергеевна",
       "create_date": "19.09.2023 16:23",
       "completed_date": "",
       "type_request": "incident",
       "userId": 0,
       "priority": "",
       "completed": false
+    },
+    {
+      "id": 153269,
+      "title": "Не работает итнернет",
+      "description": "Добрый день! У меня на компьютере перестал работать интернет. Прошу починить.",
+      "applicant": "Петров Алексей Евгеньевич",
+      "create_date": "20.09.2023 09:48",
+      "completed_date": "",
+      "type_request": "incident",
+      "userId": 4,
+      "priority": "",
+      "completed": false
     }
   ],
+
   "massages": [
     {
       "requestId": 153267,
       "create_date": "19.09.2023 15:10",
+      "userId": 6,
       "only_support": true,
-      "massage": "Reset the session in the license manager"
+      "massage": "Сброшена зависшая сессия в менеджере лицензий"
     },
     {
       "requestId": 153267,
       "create_date": "19.09.2023 15:12",
+      "userId": 6,
       "only_support": false,
-      "massage": "The problem was solved by restarting the computer and resetting the session in the license manager"
+      "massage": "Добрый день! Перезапустите компьютер и попробуйте запустить программу снова."
+    },
+    {
+      "requestId": 153267,
+      "create_date": "19.09.2023 15:23",
+      "userId": 3,
+      "only_support": false,
+      "massage": "Программа работает, спасибо!"
+    },
+    {
+      "requestId": 153269,
+      "create_date": "20.09.2023 10:02",
+      "userId": 4,
+      "only_support": false,
+      "massage": "Добрый день! Ваш компьютер был переподключен к сети. Прошу проверить и сообщить о результате."
     }
   ],
+
   "users": [
     {
       "id": 1,
@@ -58,6 +88,20 @@
       "id": 3,
       "full_name": "Новиков Сергей Витальевич",
       "login": "snovikov",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "full_name": "Семенова Анна Васильевна",
+      "login": "asemenova",
+      "password": "12345",
+      "role": "support"
+    },
+    {
+      "id": 5,
+      "full_name": "Павлов Антон Константинович",
+      "login": "iivanov",
       "password": "12345",
       "role": "user"
     },
