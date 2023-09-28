@@ -6,14 +6,14 @@ const Data = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/requests?_expand=user')
+    fetch('http://localhost:3000/requests?_embed=massages&_expand=user')
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);
 
   return (
     <div>
-      <h3>Data</h3>
+      <h3 className="dark:text-red-200 dark:bg-gray-200">Data</h3>
       <Link to="/">App</Link>
       <hr />
       <div>
