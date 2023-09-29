@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getRequestsByKey } from './api/requests';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -9,36 +8,39 @@ const Data = () => {
   const [descriptionRequest, setDescriptionRequest] = useState('');
   const [typeRequest, setTypeRequest] = useState('incident');
   const [priorityRequest, setPriorityRequest] = useState('');
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useEffect(() => {}, []);
 
-  const onSubmit = (e: Event) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let request;
-
-    axios
+    const lastId = await axios
       .get('http://localhost:3000/requests?_sort=id&_order=desc&_limit=1')
-      .then((res) => 
+      .then((res) => res.data[0].id);
 
-      request = {
-        id: res.data[0].id + 1,
-        title: titleRequest,
-        description: descriptionRequest,
-        applicant: "",
-        create_date: new Date().toLocaleString('ru-RU').replace(',', ''),
-        completed_date: '',
-        type_request: typeRequest,
-        userId: 0,
-        priority: priorityRequest,
-        completed: false,
-    }).then(res => axios.post("http://localhost:3000/requests", res));
+    const request = {
+      id: lastId + 1,
+      title: titleRequest,
+      description: descriptionRequest,
+      applicant: '',
+      create_date: new Date().toLocaleString('ru-RU').replace(',', ''),
+      completed_date: '',
+      type_request: typeRequest,
+      userId: 0,
+      priority: priorityRequest,
+      completed: false,
+    };
 
-
-
-    console.log(request);
-
-    // axios.post("http://localhost:3000/requests", request)
+      await axios.post("http://localhost:3000/requests", request).then(function(response) {
+        if(response.status === 200){
+          console.log(response);
+          setSuccessMessage("Заявка отправлена успешно!")
+        } else{
+          console.log(response.statusText)
+        }
+      })
+      
   };
 
   return (
@@ -48,7 +50,7 @@ const Data = () => {
       <hr />
       <div>
         <h3>Подача заявки</h3>
-        <form action="" onSubmit={(e) => onSubmit(e)} className="flex flex-col">
+        <form action="" onSubmit={(e: React.FormEvent) => onSubmit(e)} className="flex flex-col">
           <input
             type="text"
             placeholder="Тема"
@@ -76,6 +78,7 @@ const Data = () => {
             <option value="high">Высокий</option>
           </select>
           <input type="submit" value="Отпрвить" />
+          <p className="text-green-500">{successMessage}</p>
         </form>
       </div>
     </div>
