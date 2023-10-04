@@ -6,6 +6,7 @@ const App = () => {
     <div>
       <h3>App</h3>
       <Link to="/data">Data</Link>
+      <Link to="/auth">Auth</Link>
     </div>
   );
 };

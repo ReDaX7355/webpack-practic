@@ -11,12 +11,14 @@ import {
 import Root from './Root';
 import Data from './Data';
 import ErrorBoundary from './ErrorBoundary';
+import Auth from './Auth';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />}>
+    <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
       <Route index element={<App />} />
-      <Route path="/data" element={<Data />} errorElement={<ErrorBoundary />} />
+      <Route path="/data" element={<Data />} />
+      <Route path="/auth" element={<Auth />} />
     </Route>
   )
 );
