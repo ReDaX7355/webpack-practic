@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-import { useForm, SubmitHandler,  } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface SignInForm {
   login: string;
+  email: string;
   password: string;
 }
 
@@ -16,7 +17,9 @@ const Auth = () => {
 
   const [registration, setRegistration] = useState(false);
 
-  const onSubmit: SubmitHandler<SignInForm> = (data) => {console.log(data)};
+  const onSubmit: SubmitHandler<SignInForm> = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="max-w-lg mx-auto border border-gray-100 p-12 rounded shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)]">
@@ -28,7 +31,6 @@ const Auth = () => {
         className="my-5 flex flex-col gap-7"
       >
         <fieldset className="flex flex-col">
-          
           <input
             className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all "
             {...register('login', {
@@ -45,7 +47,32 @@ const Auth = () => {
               {errors.login.message}
             </p>
           )}
-          
+
+          {registration && (
+            <input
+              className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'Заполните поле "Email"',
+                },
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+                  message: 'Непрвильно введен Email',
+                },
+              })}
+              type="email"
+              placeholder="Email"
+              aria-invalid={errors.email ? 'true' : 'false'}
+            />
+          )}
+          {errors.login?.type === 'required' && (
+            <p role="alert" className="text-sm text-danger mt-1">
+              {errors.email?.message}
+            </p>
+          )}
+
           <input
             className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary mt-4"
             type="password"
