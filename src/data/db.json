@@ -4,79 +4,66 @@
       "id": 153267,
       "title": "Ошибка при запуске программы",
       "description": "Добрый день! Появилась ошибка при запуске программы. Прошу исправить.",
-      "applicant": "Петров Алексей Евгеньевич",
-      "create_date": "19.09.2023 14:30",
-      "completed_date": "19.09.2023 15:12",
+      "user_id": 1,
+      "created_at": "19.09.2023 14:30",
+      "closed_at": "19.09.2023 15:12",
       "type_request": "incident",
-      "userId": 6,
+      "assigned_to": "Семенова Анна Васильевна",
       "priority": "high",
-      "completed": true
+      "completed": true,
+      "messages": [
+        {
+          "timestamp": "19.09.2023 15:10",
+          "author": "Иванов Иван Иванович",
+          "visible_to": "support",
+          "massage": "Сброшена зависшая сессия в менеджере лицензий"
+        },
+        {
+          "timestamp": "19.09.2023 15:12",
+          "author": "Иванов Иван Иванович",
+          "visible_to": "all",
+          "massage": "Добрый день! Перезапустите компьютер и попробуйте запустить программу снова."
+        },
+        {
+          "timestamp": "19.09.2023 15:23",
+          "author": "Новиков Сергей Витальевич",
+          "visible_to": "all",
+          "massage": "Программа работает, спасибо!"
+        }
+      ]
     },
     {
       "id": 153268,
       "title": "Не работает компьютерная мышь",
       "description": "Добрый день! Не работает компьютерная мышь! Прошу заменить.",
-      "applicant": "Ветрова Анастасия Сергеевна",
-      "create_date": "19.09.2023 16:23",
-      "completed_date": "",
+      "user_id": 2,
+      "created_at": "19.09.2023 16:23",
+      "closed_at": "",
       "type_request": "incident",
-      "userId": 0,
+      "assigned_to": "",
       "priority": "",
-      "completed": false
+      "completed": false,
+      "messages": []
     },
     {
       "id": 153269,
       "title": "Не работает итнернет",
       "description": "Добрый день! У меня на компьютере перестал работать интернет. Прошу починить.",
-      "applicant": "Петров Алексей Евгеньевич",
-      "create_date": "20.09.2023 09:48",
-      "completed_date": "",
+      "user_id": 1,
+      "created_at": "20.09.2023 09:48",
+      "closed_at": "",
       "type_request": "incident",
-      "userId": 4,
+      "assigned_to": "Иванов Иван Иванович",
       "priority": "",
-      "completed": false
-    },
-    {
-      "id": 153270,
-      "title": "",
-      "description": "",
-      "applicant": "",
-      "create_date": "29.09.2023 14:17:33",
-      "completed_date": "",
-      "type_request": "incident",
-      "userId": 0,
-      "priority": "",
-      "completed": false
-    }
-  ],
-  "massages": [
-    {
-      "requestId": 153267,
-      "create_date": "19.09.2023 15:10",
-      "user": "Иванов Иван Иванович",
-      "only_support": true,
-      "massage": "Сброшена зависшая сессия в менеджере лицензий"
-    },
-    {
-      "requestId": 153267,
-      "create_date": "19.09.2023 15:12",
-      "user": "Иванов Иван Иванович",
-      "only_support": false,
-      "massage": "Добрый день! Перезапустите компьютер и попробуйте запустить программу снова."
-    },
-    {
-      "requestId": 153267,
-      "create_date": "19.09.2023 15:23",
-      "user": "Новиков Сергей Витальевич",
-      "only_support": false,
-      "massage": "Программа работает, спасибо!"
-    },
-    {
-      "requestId": 153269,
-      "create_date": "20.09.2023 10:02",
-      "user": "Семенова Анна Васильевна",
-      "only_support": false,
-      "massage": "Добрый день! Ваш компьютер был переподключен к сети. Прошу проверить и сообщить о результате."
+      "completed": false,
+      "messages": [
+        {
+          "timestamp": "20.09.2023 10:02",
+          "author": "Семенова Анна Васильевна",
+          "visible_to": "all",
+          "massage": "Добрый день! Ваш компьютер был переподключен к сети. Прошу проверить и сообщить о результате."
+        }
+      ]
     }
   ],
   "users": [
