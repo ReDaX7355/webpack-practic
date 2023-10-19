@@ -7,6 +7,7 @@ const App = () => {
       <h3>App</h3>
       <Link to="/data">Data</Link>
       <Link to="/auth">Auth</Link>
+      <Link to="/tickets">Tickets</Link>
     </div>
   );
 };

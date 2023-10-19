@@ -12,6 +12,7 @@ import Root from './Root';
 import Data from './Data';
 import ErrorBoundary from './ErrorBoundary';
 import Auth from './Auth';
+import Tickets from './Tickets';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route index element={<App />} />
       <Route path="/data" element={<Data />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/tickets" element={<Tickets />} />
     </Route>
   )
 );
