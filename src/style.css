@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .table-tickets {
+    @apply py-2 px-4;
+  }
+
+  .table-tickets td {
+    @apply py-2 px-4 text-left;
+  }
+
+  .table-tickets th {
+    @apply py-2 px-4 bg-gray-300 text-left;
+  }
+
+  .table-tickets tbody > tr {
+    @apply odd:bg-green-100;
+  }
+}
