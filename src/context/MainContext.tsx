@@ -1,26 +1,60 @@
-import React, { FC, ReactNode, useReducer } from 'react';
+import React, { FC, ReactNode, Reducer, useReducer } from 'react';
 import { createContext } from 'react';
 
+type initState = {
+  auth: boolean;
+};
 
-const defaultState = {
+const defaultState: initState = {
   auth: false,
-}
+};
 
-export const Context = createContext(defaultState);
+type valueContextType = {
+  state: initState;
+  signIn: (login: string) => void;
+};
+
+export const Context = createContext<Partial<valueContextType>>({});
 
 interface ContextProps {
   children: ReactNode | null;
 }
 
-const MainProvider:FC<ContextProps> = ({children}) => {
+type actionType = {
+  type: string;
+  payload: string;
+};
 
-  const {} = useReducer(reducer, defaultState)
+// type reduserTypes = {
+//   state: typeof defaultState,
+//   action: actionType
+// }
 
-  return (
-    <Context.Provider value={}>
-      {children}
-    </Context.Provider>
-  );
+const mainReduser: Reducer<initState, actionType> = (
+  state,
+  action
+): initState => {
+  switch (action.type) {
+    case 'login':
+      return { ...state, auth: true };
+    default:
+      return state;
+  }
+};
+
+const MainProvider: FC<ContextProps> = ({ children }) => {
+  const [state, dispatch] = useReducer(mainReduser, defaultState);
+
+  const signIn = (login: string) => {
+    dispatch({ type: 'login', payload: login });
+  };
+
+  const valueContext: valueContextType = {
+    state,
+    signIn,
+  };
+
+  return <Context.Provider value={valueContext}>{children}</Context.Provider>;
 };
 
 export default MainProvider;

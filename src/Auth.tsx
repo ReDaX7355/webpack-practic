@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Navigate, redirect } from 'react-router-dom';
+import { Context } from './context/MainContext';
 
 interface SignInForm {
   login: string;
@@ -17,8 +19,12 @@ const Auth = () => {
 
   const [registration, setRegistration] = useState(false);
 
+  const { state, signIn } = useContext(Context);
+
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
     console.log(data);
+    signIn?.(data.login);
+    console.log(state?.auth);
   };
 
   return (
