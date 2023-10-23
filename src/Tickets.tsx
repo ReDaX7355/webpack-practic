@@ -1,37 +1,13 @@
 import axios from 'axios';
 import React, { FC, useEffect, useState } from 'react';
+import { getTicketsByPage } from './api/requests';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/requests')
-      .then((res) => {
-        setTickets(res.data);
-      })
-      .catch((err) => console.log(err));
+    getTicketsByPage(1).then((res) => setTickets(res));
   }, []);
-
-  let TABLE_COLUMNS = [
-    {
-      label: 'id',
-      sort: 'default',
-    },
-    {
-      label: 'title',
-      sort: 'default',
-    },
-    {
-      label: 'status',
-      sort: 'default',
-    },
-  ];
-
-  const sortTickets = () => {
-    setTickets((prev) => [...prev.sort((a, b) => b.id - a.id)]);
-    console.log(tickets);
-  };
 
   return (
     <div>
@@ -40,10 +16,10 @@ const Tickets: FC = () => {
       <table className="table-tickets">
         <thead>
           <tr>
-            <th onClick={() => sortTickets()}>Номер заявки</th>
+            <th>Номер заявки</th>
             <th>Тема</th>
             <th>Дата создания</th>
-            <th onClick={() => sortTickets()}>Статус</th>
+            <th>Статус</th>
           </tr>
         </thead>
         <tbody>

@@ -1,46 +1,33 @@
+import axios from 'axios';
+
 const SERVER_URL: string = 'http://localhost:3000';
 
-async function getRequests(query: string, endpoint = SERVER_URL) {
+async function getTickets(query: string, endpoint = SERVER_URL) {
   try {
     // Определяем наличие строки запроса
     query ? (query = `?${query}`) : (query = '');
 
-    const response = await fetch(`${endpoint}/requests${query}`);
+    const response = await axios.get(`${endpoint}/tickets${query}`);
 
-    if (!response.ok) throw new Error(response.statusText);
+    if (response.status != 200) throw new Error(response.statusText);
 
-    const json = await response.json();
-    console.log(json);
-    return json;
+    console.log(response.data);
+    return response.data;
   } catch (err) {
     console.error(err.message || err);
   }
 }
 
-export const getRequestById = (id: string | number) => getRequests(`id=${id}`);
+export const getTicketsByPage = (page: number) =>
+  getTickets(`_page=${page}&_limit=10`);
 
-export const getRequestsByKey = (key: string, value: string) =>
-  getRequests(`${key}=${value}`);
+export const getTicketById = (id: string | number) => getTickets(`id=${id}`);
 
-export const searchRequests = (value: string | number) =>
-  getRequests(`q=${value}`);
+export const getTicketsByKey = (key: string, value: string) =>
+  getTickets(`${key}=${value}`);
 
-// async function getTodos(query: string, endpoint = SERVER_URL) {
-//   try {
-//     // Определяем наличие строки запроса
-//     query ? (query = `?${query}`) : (query = '');
-
-//     const response = await fetch(`${endpoint}${query}`);
-
-//     if (!response.ok) throw new Error(response.statusText);
-
-//     const json = await response.json();
-//     console.log(json);
-//     return json;
-//   } catch (err) {
-//     console.error(err.message || err);
-//   }
-// }
+export const searchTickets = (value: string | number) =>
+  getTickets(`q=${value}`);
 
 // async function getTodos(query: string, endpoint = SERVER_URL) {
 //   try {
