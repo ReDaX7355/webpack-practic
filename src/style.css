@@ -4,18 +4,25 @@
 
 @layer components {
   .table-tickets {
-    @apply py-2 px-4;
+    @apply py-2 px-4 table-auto min-w-full border;
   }
 
   .table-tickets td {
-    @apply py-2 px-4 text-left;
+    @apply py-2 px-4 text-left truncate border border-gray-200 w-[100px];
   }
 
   .table-tickets th {
-    @apply py-2 px-4 bg-secondary text-left;
+    @apply py-2 px-4 bg-gray-300 text-left truncate w-[100px];
   }
 
-  .table-tickets tbody > tr {
-    @apply border-b border-gray-200;
+  .table-tickets tbody tr {
+    @apply hover:bg-secondary;
+  }
+
+  .table-tickets th:nth-child(2) {
+    @apply max-w-[300px];
+  }
+  .table-tickets td:nth-child(2) {
+    @apply max-w-[300px];
   }
 }

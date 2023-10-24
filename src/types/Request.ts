@@ -1,14 +1,22 @@
+type messageType = {
+  timestamp: string;
+  author: string;
+  visible_to: string;
+  massage: string;
+};
+
 interface Request {
   id: number;
   title: string;
   description: string;
-  applicant_id: number;
-  create_date: string;
-  completed_date: string;
+  user_id: number;
+  created_at: string;
+  closed_at: string;
   type_request: string;
-  support_id: number;
+  assigned_to: string;
   priority: string;
   completed: boolean;
+  messages: messageType[];
 }
 
 export default Request;
