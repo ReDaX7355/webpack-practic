@@ -8,11 +8,11 @@
   }
 
   .table-tickets td {
-    @apply py-2 px-4 text-left truncate border border-gray-200 w-[100px];
+    @apply py-2 px-4 text-left truncate border border-gray-200 w-[50px] max-w-[50px] min-w-[50px];
   }
 
   .table-tickets th {
-    @apply py-2 px-4 bg-gray-300 text-left truncate w-[100px];
+    @apply py-2 px-4 bg-gray-300 text-left truncate w-[50px] max-w-[50px] min-w-[200px];
   }
 
   .table-tickets tbody tr {
