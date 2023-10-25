@@ -303,6 +303,13 @@
       "login": "iivanov",
       "password": "12345",
       "role": "support"
+    },
+    {
+      "id": "e96f8937-3ae8-4dd6-b399-5e8eb08f986a",
+      "login": "flexot6",
+      "email": "rsapronov@tvsz.ru",
+      "password": "12345",
+      "role": "user"
     }
   ]
 }

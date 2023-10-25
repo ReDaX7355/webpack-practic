@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
 import React, { FC, ReactNode, Reducer, useReducer } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
-import { SERVER_URL } from '../api/requests';
+import { useNavigate } from 'react-router-dom';
 
 type initState = {
   auth: boolean;
@@ -57,22 +57,33 @@ const mainReduser: Reducer<initState, actionType> = (
 const MainProvider: FC<ContextProps> = ({ children }) => {
   const [state, dispatch] = useReducer(mainReduser, defaultState);
 
+  const navigate = useNavigate();
+
   const signIn = (login: string) => {
     dispatch({ type: 'login', payload: login });
+    console.log(state);
+    navigate('/tickets');
   };
 
   const signUp = async ({ login, email, password }: userDataType) => {
-    const newUser = {
-      id: uuidv4(),
-      login: login,
-      email: email,
-      password: password,
-    };
+    const response = await axios.get(
+      `http://localhost:3000/users?login=${login}`
+    );
 
-    const response = await axios.post(SERVER_URL + '/users', newUser);
+    if (response?.data.length < 1) {
+      alert('Такой пользователь уже существует!');
+    } else {
+      const newUser = {
+        id: v4(),
+        login: login,
+        email: email,
+        password: password,
+        role: 'user',
+      };
 
-    if (response.status == 200) {
-      signIn?.(login);
+      axios.post('http://localhost:3000/users', newUser).then((res) => {
+        if (res.status == 200) signIn?.(login);
+      });
     }
   };
 
