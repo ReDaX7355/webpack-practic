@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL: string = 'http://localhost:3000';
+export const SERVER_URL: string = 'http://localhost:3000';
 
 async function getTickets(query: string, endpoint = SERVER_URL) {
   try {

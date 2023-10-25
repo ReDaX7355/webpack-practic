@@ -19,12 +19,20 @@ const Auth = () => {
 
   const [registration, setRegistration] = useState(false);
 
-  const { state, signIn } = useContext(Context);
+  const { signIn, signUp } = useContext(Context);
 
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    console.log(data);
-    signIn?.(data.login);
-    console.log(state?.auth);
+    const userData = {
+      login: data.login,
+      email: data.email,
+      password: data.password,
+    };
+
+    if (registration) {
+      signUp?.(userData);
+    } else {
+      signIn?.(data.login);
+    }
   };
 
   return (
@@ -105,7 +113,7 @@ const Auth = () => {
           />
           <p
             className=" text-primary cursor-pointer hover:text-agree select-none hover:underline"
-            onClick={() => setRegistration((prev) => !registration)}
+            onClick={() => setRegistration(!registration)}
           >
             {registration ? 'Вход' : 'Регистрация'}
           </p>
