@@ -22,7 +22,7 @@ type userDataType = {
 
 type valueContextType = {
   state: initState;
-  signIn: (login: string) => void;
+  signIn: (login: string, password: string) => void;
   signUp: ({ login, email, password }: userDataType) => void;
 };
 
@@ -59,10 +59,23 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const signIn = (login: string) => {
-    dispatch({ type: 'login', payload: login });
-    console.log(state);
-    navigate('/tickets');
+  const signIn = (login: string, password: string) => {
+    axios
+      .get(`http://localhost:3000/users?login=${login}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.length == 1) {
+          if (res.data[0].password == password) {
+            dispatch({ type: 'login', payload: login });
+            navigate('/tickets');
+          } else {
+            alert('Неверный логин или пароль!');
+          }
+        } else {
+          alert('Неверный логин или пароль!');
+        }
+      })
+      .catch((err) => alert(err));
   };
 
   const signUp = async ({ login, email, password }: userDataType) => {
@@ -82,7 +95,7 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
       };
 
       axios.post('http://localhost:3000/users', newUser).then((res) => {
-        if (res.status == 200) signIn?.(login);
+        if (res.status == 200) signIn?.(login, password);
       });
     }
   };

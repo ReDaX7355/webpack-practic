@@ -3,11 +3,19 @@ import { Link } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div>
-      <h3>App</h3>
-      <Link to="/data">Data</Link>
-      <Link to="/auth">Auth</Link>
-      <Link to="/tickets">Tickets</Link>
+    <div className=" container mx-auto">
+      <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/data">
+        Data
+      </Link>
+      <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/auth">
+        Auth
+      </Link>
+      <Link
+        className="px-4 py-2 bg-secondary mx-1 hover:bg-primary"
+        to="/tickets"
+      >
+        Tickets
+      </Link>
     </div>
   );
 };

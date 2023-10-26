@@ -31,7 +31,7 @@ const Auth = () => {
     if (registration) {
       signUp?.(userData);
     } else {
-      signIn?.(data.login);
+      signIn?.(data.login, data.password);
     }
   };
 
