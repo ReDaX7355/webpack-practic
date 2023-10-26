@@ -29,7 +29,7 @@ const Tickets: FC = () => {
             <tbody>
               {tickets.map((ticket) => (
                 <tr>
-                  <td>{ticket.ticket_number}</td>
+                  <td>{ticket.ticket_number}</td> 
                   <td>{ticket.title}</td>
                   <td>{ticket.created_at}</td>
                   <td>{ticket.completed ? 'Закрыта' : 'Открыта'}</td>
