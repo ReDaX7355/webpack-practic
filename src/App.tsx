@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div className=" container mx-auto">
       <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/data">
-        Data
+        Add Ticket
       </Link>
       <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/auth">
         Auth

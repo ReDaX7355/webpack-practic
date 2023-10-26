@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { getTicketsByPage } from './api/requests';
+import { getAllTickets } from './api/requests';
 import Request from './types/Request';
 
 const Tickets: FC = () => {
@@ -7,7 +7,7 @@ const Tickets: FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getTicketsByPage(1)
+    getAllTickets()
       .then((res) => setTickets(res))
       .catch((res) => setError(res.status));
   }, []);
@@ -29,7 +29,7 @@ const Tickets: FC = () => {
             <tbody>
               {tickets.map((ticket) => (
                 <tr>
-                  <td>{ticket.id}</td>
+                  <td>{ticket.ticket_number}</td>
                   <td>{ticket.title}</td>
                   <td>{ticket.created_at}</td>
                   <td>{ticket.completed ? 'Закрыта' : 'Открыта'}</td>

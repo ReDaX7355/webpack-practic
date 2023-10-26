@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+import IRequest from './types/Request';
+import { v4 } from 'uuid';
 
 const Data = () => {
   const [titleRequest, setTitleRequest] = useState('');
@@ -15,32 +17,33 @@ const Data = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const lastId = await axios
-      .get('http://localhost:3000/requests?_sort=id&_order=desc&_limit=1')
-      .then((res) => res.data[0].id);
+    const lastNumberTicket = await axios.get(`http://localhost:3000/tickets?_sort=ticket_number&_order=desc&_limit=1`).then(res => res.data[0].ticket_number)
 
-    const request = {
-      id: lastId + 1,
+    const request: IRequest = {
+      id: 'v4()',
+      ticket_number: lastNumberTicket + 1,
       title: titleRequest,
       description: descriptionRequest,
-      applicant: '',
-      create_date: new Date().toLocaleString('ru-RU').replace(',', ''),
-      completed_date: '',
+      created_at: new Date().toLocaleString('ru-RU').replace(',', ''),
+      closed_at: '',
       type_request: typeRequest,
-      userId: 0,
+      user_id: 0,
+      assigned_to: '',
+      messages: [],
       priority: priorityRequest,
       completed: false,
     };
 
-      await axios.post("http://localhost:3000/requests", request).then(function(response) {
-        if(response.status === 200){
+    await axios
+      .post('http://localhost:3000/tickets', request)
+      .then(function (response) {
+        if (response.status === 200) {
           console.log(response);
-          setSuccessMessage("Заявка отправлена успешно!")
-        } else{
-          console.log(response.statusText)
+          setSuccessMessage('Заявка отправлена успешно!');
+        } else {
+          console.log(response.statusText);
         }
-      })
-      
+      });
   };
 
   return (
@@ -50,7 +53,11 @@ const Data = () => {
       <hr />
       <div>
         <h3>Подача заявки</h3>
-        <form action="" onSubmit={(e: React.FormEvent) => onSubmit(e)} className="flex flex-col">
+        <form
+          action=""
+          onSubmit={(e: React.FormEvent) => onSubmit(e)}
+          className="flex flex-col"
+        >
           <input
             type="text"
             placeholder="Тема"

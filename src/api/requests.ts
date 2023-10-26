@@ -18,6 +18,8 @@ async function getTickets(query: string, endpoint = SERVER_URL) {
   }
 }
 
+export const getAllTickets = () => getTickets('');
+
 export const getTicketsByPage = (page: number) =>
   getTickets(`_page=${page}&_limit=10`);
 

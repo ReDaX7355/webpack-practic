@@ -5,8 +5,9 @@ type messageType = {
   massage: string;
 };
 
-interface Request {
-  id: number;
+interface IRequest {
+  id: string;
+  ticket_number: number;
   title: string;
   description: string;
   user_id: number;
@@ -19,4 +20,4 @@ interface Request {
   messages: messageType[];
 }
 
-export default Request;
+export default IRequest;
