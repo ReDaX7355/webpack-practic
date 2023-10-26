@@ -266,6 +266,7 @@
       "id": 1,
       "full_name": "Петров Алексей Евгеньевич",
       "login": "apetrov",
+      "email": "apetrov@mail.ru",
       "password": "12345",
       "role": "user"
     },
@@ -273,6 +274,7 @@
       "id": 2,
       "full_name": "Ветрова Анастасия Сергеевна",
       "login": "avetrova",
+      "email": "avetrova@mail.ru",
       "password": "12345",
       "role": "user"
     },
@@ -280,6 +282,7 @@
       "id": 3,
       "full_name": "Новиков Сергей Витальевич",
       "login": "snovikov",
+      "email": "snovikov@mail.ru",
       "password": "12345",
       "role": "user"
     },
@@ -287,13 +290,15 @@
       "id": 4,
       "full_name": "Семенова Анна Васильевна",
       "login": "asemenova",
+      "email": "asemenova@mail.ru",
       "password": "12345",
       "role": "support"
     },
     {
       "id": 5,
       "full_name": "Павлов Антон Константинович",
-      "login": "iivanov",
+      "login": "apavlov",
+      "email": "apavlov@mail.ru",
       "password": "12345",
       "role": "user"
     },
@@ -301,13 +306,15 @@
       "id": 6,
       "full_name": "Иванов Иван Иванович",
       "login": "iivanov",
+      "email": "iivanov@mail.ru",
       "password": "12345",
       "role": "support"
     },
     {
-      "id": "e96f8937-3ae8-4dd6-b399-5e8eb08f986a",
-      "login": "flexot6",
-      "email": "rsapronov@tvsz.ru",
+      "id": "ddd9c0e6-67d0-4606-b93a-f6aa63fd1cda",
+      "full_name": "Сапронов Руслан Иванович",
+      "login": "rsapronov",
+      "email": "rsapronov@mail.ru",
       "password": "12345",
       "role": "user"
     }

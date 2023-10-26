@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Navigate, redirect } from 'react-router-dom';
 import { Context } from './context/MainContext';
 
 interface SignInForm {
+  full_name: string;
   login: string;
   email: string;
   password: string;
@@ -23,6 +23,7 @@ const Auth = () => {
 
   const onSubmit: SubmitHandler<SignInForm> = (data) => {
     const userData = {
+      full_name: data.full_name,
       login: data.login,
       email: data.email,
       password: data.password,
@@ -45,8 +46,27 @@ const Auth = () => {
         className="my-5 flex flex-col gap-7"
       >
         <fieldset className="flex flex-col">
+          {registration && (
+            <input
+              className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
+              {...register('full_name', {
+                required: {
+                  value: true,
+                  message: 'Заполните поле "ФИО"',
+                },
+              })}
+              type="name"
+              placeholder="ФИО"
+              aria-invalid={errors.full_name ? 'true' : 'false'}
+            />
+          )}
+          {errors.full_name?.type === 'required' && (
+            <p role="alert" className="text-sm text-danger mt-1">
+              {errors.full_name?.message}
+            </p>
+          )}
           <input
-            className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all "
+            className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
             {...register('login', {
               required: {
                 value: true,
@@ -81,7 +101,7 @@ const Auth = () => {
               aria-invalid={errors.email ? 'true' : 'false'}
             />
           )}
-          {errors.login?.type === 'required' && (
+          {errors.email?.type === 'required' && (
             <p role="alert" className="text-sm text-danger mt-1">
               {errors.email?.message}
             </p>

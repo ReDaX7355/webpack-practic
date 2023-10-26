@@ -15,6 +15,7 @@ const defaultState: initState = {
 };
 
 type userDataType = {
+  full_name: string;
   login: string;
   email: string;
   password: string;
@@ -23,7 +24,7 @@ type userDataType = {
 type valueContextType = {
   state: initState;
   signIn: (login: string, password: string) => void;
-  signUp: ({ login, email, password }: userDataType) => void;
+  signUp: ({ login, email, password, full_name }: userDataType) => void;
 };
 
 export const Context = createContext<Partial<valueContextType>>({});
@@ -78,16 +79,22 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
       .catch((err) => alert(err));
   };
 
-  const signUp = async ({ login, email, password }: userDataType) => {
+  const signUp = async ({
+    login,
+    email,
+    password,
+    full_name,
+  }: userDataType) => {
     const response = await axios.get(
       `http://localhost:3000/users?login=${login}`
     );
 
-    if (response?.data.length < 1) {
+    if (response.data.length == 1) {
       alert('Такой пользователь уже существует!');
     } else {
       const newUser = {
         id: v4(),
+        full_name: full_name,
         login: login,
         email: email,
         password: password,
@@ -95,7 +102,7 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
       };
 
       axios.post('http://localhost:3000/users', newUser).then((res) => {
-        if (res.status == 200) signIn?.(login, password);
+        if (res.status == 201) signIn?.(login, password);
       });
     }
   };
