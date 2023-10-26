@@ -280,6 +280,7 @@
       "created_at": "26.10.2023 13:49:16",
       "closed_at": "",
       "type_request": "incident",
+
       "user_id": 0,
       "assigned_to": "",
       "messages": [],
