@@ -21,6 +21,13 @@ const Tickets: FC = () => {
       });
   }, []);
 
+  const sortTickets = (e) => {
+    const nameField = e.target.dataset.name;
+    console.log(nameField);
+    const sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
+    setTickets((prev) => [...sortTickets]);
+  };
+
   return (
     <div className="px-7">
       <h3>Tickets</h3>
@@ -29,7 +36,9 @@ const Tickets: FC = () => {
           <table className="table-tickets">
             <thead>
               <tr>
-                <th>Номер заявки</th>
+                <th data-name="ticket_number" onClick={(e) => sortTickets(e)}>
+                  Номер заявки
+                </th>
                 <th>Тема</th>
                 <th>Дата создания</th>
                 <th>Тип заявки</th>
