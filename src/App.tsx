@@ -7,7 +7,7 @@ const App = () => {
       <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/data">
         Add Ticket
       </Link>
-      <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/auth">
+      <Link className="px-4 py-2 bg-secondary mx-1 hover:bg-primary" to="/">
         Auth
       </Link>
       <Link

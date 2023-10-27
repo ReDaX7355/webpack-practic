@@ -17,9 +17,8 @@ import Tickets from './Tickets';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
-      <Route index element={<App />} />
+      <Route index element={<Auth />} />
       <Route path="/data" element={<Data />} />
-      <Route path="/auth" element={<Auth />} />
       <Route path="/tickets" element={<Tickets />} />
     </Route>
   )

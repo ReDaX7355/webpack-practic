@@ -17,10 +17,14 @@ const Data = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const lastNumberTicket = await axios.get(`http://localhost:3000/tickets?_sort=ticket_number&_order=desc&_limit=1`).then(res => res.data[0].ticket_number)
+    const lastNumberTicket = await axios
+      .get(
+        `http://localhost:3000/tickets?_sort=ticket_number&_order=desc&_limit=1`
+      )
+      .then((res) => res.data[0].ticket_number);
 
     const request: IRequest = {
-      id: 'v4()',
+      id: v4(),
       ticket_number: lastNumberTicket + 1,
       title: titleRequest,
       description: descriptionRequest,
@@ -48,40 +52,47 @@ const Data = () => {
 
   return (
     <div>
-      <h3 className="dark:text-red-200 dark:bg-gray-200">Data</h3>
-      <Link to="/">App</Link>
       <hr />
-      <div>
-        <h3>Подача заявки</h3>
+      <div className="max-w-[500px] w-[100%] mx-auto mt-5 p-6 shadow-lg rounded bg-white">
+        <h3 className="text-lg font-bold text-center">Подача заявки</h3>
         <form
           action=""
           onSubmit={(e: React.FormEvent) => onSubmit(e)}
-          className="flex flex-col"
+          className="flex flex-col mt-5 gap-3"
         >
           <input
             type="text"
             placeholder="Тема"
             onChange={(e) => setTitleRequest(e.target.value)}
+            required
+            className="px-3 py-1 border-2 border-secondary rounded focus:outline-2 focus: outline-primary"
           />
-          <input
-            type="text"
+          <textarea
             placeholder="Описание проблемы"
             onChange={(e) => setDescriptionRequest(e.target.value)}
+            required
+            className="px-3 py-1 border-2 border-secondary rounded focus:outline-2 focus: outline-primary min-h-[70px]"
           />
           <select
             name="type_request"
             id="type_request"
             onChange={(e) => setTypeRequest(e.target.value)}
+            className="border border-secondary focus:outline focus:outline-primary"
           >
-            <option value="incident">Инцидент</option>
+            <option selected value="incident">
+              Инцидент
+            </option>
             <option value="question">Вопрос</option>
           </select>
           <select
             name="priority"
             id="priority"
             onChange={(e) => setPriorityRequest(e.target.value)}
+            className="border border-secondary focus:outline focus:outline-primary"
           >
-            <option value="">Обычный</option>
+            <option selected value="">
+              Обычный
+            </option>
             <option value="high">Высокий</option>
           </select>
           <input type="submit" value="Отпрвить" />

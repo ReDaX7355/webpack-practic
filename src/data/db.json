@@ -280,7 +280,6 @@
       "created_at": "26.10.2023 13:49:16",
       "closed_at": "",
       "type_request": "incident",
-
       "user_id": 0,
       "assigned_to": "",
       "messages": [],
@@ -302,17 +301,31 @@
       "completed": false
     },
     {
-      "id": "v4()",
+      "id": "56248f32-4943-4b4c-b471-4030c5878aed",
       "ticket_number": 153272,
-      "title": "awdasdas dsd asdasd as dasd ",
-      "description": "as asdas das dasd asd asd awdawdasd asd asd awd asdawdsd",
-      "created_at": "26.10.2023 14:00:19",
+      "title": "asdsadasdasdasd",
+      "description": "asdasdadasdadsdadsdadasdasd\nasdadasd\nasdasd\nasd\nasd\nasd",
+      "created_at": "27.10.2023 10:27:07",
       "closed_at": "",
       "type_request": "incident",
       "user_id": 0,
       "assigned_to": "",
       "messages": [],
       "priority": "",
+      "completed": false
+    },
+    {
+      "id": "8ca03708-ce02-4d7a-bc5d-d413e8cb9f6f",
+      "ticket_number": 153273,
+      "title": "asdasdasd",
+      "description": "asdasdasdasd",
+      "created_at": "27.10.2023 10:49:48",
+      "closed_at": "",
+      "type_request": "question",
+      "user_id": 0,
+      "assigned_to": "",
+      "messages": [],
+      "priority": "high",
       "completed": false
     }
   ],

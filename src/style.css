@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    @apply h-[100%];
+  }
+
   .table-tickets {
-    @apply py-2 px-4 table-auto min-w-full border;
+    @apply py-2 px-4 table-auto min-w-full border max-h-[400px] overflow-y-auto;
   }
 
   .table-tickets td {
