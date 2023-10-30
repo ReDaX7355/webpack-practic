@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { getAllTickets } from './api/requests';
 import Request from './types/Request';
 import IRequest from './types/Request';
-import HeaderCellProps from './components/Tickets/HeaderCellProps';
+import HeaderCell from './components/Tickets/HeaderCell';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<Request[]>([]);
@@ -47,7 +47,7 @@ const Tickets: FC = () => {
           <table className="table-tickets">
             <thead>
               <tr>
-                <th data-name="ticket_number" onClick={(e) => sortTickets(e)}>
+                {/* <th data-name="ticket_number" onClick={(e) => sortTickets(e)}>
                   Номер заявки
                   <span>
                     <svg
@@ -67,8 +67,12 @@ const Tickets: FC = () => {
                       <path d="M21 15l-4 4l-4-4m4 4v-14" />
                     </svg>
                   </span>
-                </th>
-                <HeaderCellProps title="Номер заявки" />
+                </th> */}
+                <HeaderCell
+                  title="Номер заявки"
+                  data_name="ticket_number"
+                  sortFunction={sortTickets}
+                />
                 <th data-name="title" onClick={(e) => sortTickets(e)}>
                   Тема
                 </th>
