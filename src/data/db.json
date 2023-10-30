@@ -70,7 +70,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a97e-0ecf46de3fgb",
-      "ticket_number": 153267,
+      "ticket_number": 153270,
       "title": "Ошибка при запуске программы",
       "description": "Добрый день! Появилась ошибка при запуске программы. Прошу исправить.",
       "user_id": 1,
@@ -103,7 +103,7 @@
     },
     {
       "id": "28341346-57a1-48a4-a97e-0ecf46de2d3b",
-      "ticket_number": 153268,
+      "ticket_number": 153271,
       "title": "Не работает компьютерная мышь",
       "description": "Добрый день! Не работает компьютерная мышь! Прошу заменить.",
       "user_id": 2,
@@ -117,7 +117,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a7je-0ecf46de2d3b",
-      "ticket_number": 153269,
+      "ticket_number": 153272,
       "title": "Интернет",
       "description": "Добрый день! У меня на компьютере перестал работать интернет. Прошу починить.",
       "user_id": 1,
@@ -138,7 +138,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a97e-bh5f46de2d3b",
-      "ticket_number": 153267,
+      "ticket_number": 153273,
       "title": "Ошибка при запуске программы",
       "description": "Добрый день! Появилась ошибка при запуске программы. Прошу исправить.",
       "user_id": 1,
@@ -171,7 +171,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a97e-0ev4y6de2d3b",
-      "ticket_number": 153268,
+      "ticket_number": 153274,
       "title": "Не работает компьютерная мышь",
       "description": "Добрый день! Не работает компьютерная мышь! Прошу заменить.",
       "user_id": 2,
@@ -185,7 +185,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a97e-0ecf46de7m3b",
-      "ticket_number": 153269,
+      "ticket_number": 153275,
       "title": "Интернет",
       "description": "Добрый день! У меня на компьютере перестал работать интернет. Прошу починить.",
       "user_id": 1,
@@ -206,7 +206,7 @@
     },
     {
       "id": "28343746-57a1-48a4-a97e-0ecf46de2d3b",
-      "ticket_number": 153267,
+      "ticket_number": 153276,
       "title": "Ошибка при запуске программы",
       "description": "Добрый день! Появилась ошибка при запуске программы. Прошу исправить.",
       "user_id": 1,
@@ -239,8 +239,8 @@
     },
     {
       "id": "28348394-57a1-48a4-a97e-0ecf46de2d3b",
-      "ticket_number": 153268,
-      "title": "Не работает компьютерная мышь",
+      "ticket_number": 153277,
+      "title": "Работает компьютерная мышь",
       "description": "Добрый день! Не работает компьютерная мышь! Прошу заменить.",
       "user_id": 2,
       "created_at": "19.09.2023 16:23",
@@ -253,7 +253,7 @@
     },
     {
       "id": "28348346-57a1-48a4-a97e-0ecf46de2d3b",
-      "ticket_number": 153269,
+      "ticket_number": 153278,
       "title": "Интернет",
       "description": "Добрый день! У меня на компьютере перестал работать интернет. Прошу починить.",
       "user_id": 1,
@@ -274,7 +274,7 @@
     },
     {
       "id": "28348346-57a1-48a2-a97e-0ecf46de2d3b",
-      "ticket_number": 153270,
+      "ticket_number": 153279,
       "title": "Заявка фывфывфывфыв",
       "description": "фывфывфывфывфцуцуйаыв аы аыаыв аыва ва ыв аыва ",
       "created_at": "26.10.2023 13:49:16",
@@ -284,11 +284,11 @@
       "assigned_to": "",
       "messages": [],
       "priority": "",
-      "completed": false
+      "completed": true
     },
     {
       "id": "28348346-57a1-48a4-a97e-6hnd6de2d3b",
-      "ticket_number": 153271,
+      "ticket_number": 153280,
       "title": "asdasd",
       "description": "dadasdasd",
       "created_at": "26.10.2023 13:52:40",
@@ -302,7 +302,7 @@
     },
     {
       "id": "56248f32-4943-4b4c-b471-4030c5878aed",
-      "ticket_number": 153272,
+      "ticket_number": 153281,
       "title": "asdsadasdasdasd",
       "description": "asdasdadasdadsdadsdadasdasd\nasdadasd\nasdasd\nasd\nasd\nasd",
       "created_at": "27.10.2023 10:27:07",
@@ -312,11 +312,11 @@
       "assigned_to": "",
       "messages": [],
       "priority": "",
-      "completed": false
+      "completed": true
     },
     {
       "id": "8ca03708-ce02-4d7a-bc5d-d413e8cb9f6f",
-      "ticket_number": 153273,
+      "ticket_number": 153282,
       "title": "asdasdasd",
       "description": "asdasdasdasd",
       "created_at": "27.10.2023 10:49:48",

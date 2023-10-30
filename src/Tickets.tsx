@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { getAllTickets } from './api/requests';
 import Request from './types/Request';
+import IRequest from './types/Request';
+import HeaderCellProps from './components/Tickets/HeaderCellProps';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<Request[]>([]);
@@ -23,9 +25,18 @@ const Tickets: FC = () => {
 
   const sortTickets = (e) => {
     const nameField = e.target.dataset.name;
+    const order = e.target.dataset.order;
+    let sortTickets: IRequest[];
     console.log(nameField);
-    const sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
-    setTickets((prev) => [...sortTickets]);
+    if (order == 'asc') {
+      sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
+      e.target.setAttribute('data-order', 'desc');
+    } else {
+      sortTickets = tickets.sort((a, b) => a[nameField] - b[nameField]);
+      e.target.setAttribute('data-order', 'asc');
+    }
+    console.log(sortTickets);
+    setTickets(() => [...sortTickets]);
   };
 
   return (
@@ -38,20 +49,49 @@ const Tickets: FC = () => {
               <tr>
                 <th data-name="ticket_number" onClick={(e) => sortTickets(e)}>
                   Номер заявки
+                  <span>
+                    <svg
+                      className="h-5 w-5 text-green-400"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {' '}
+                      <path stroke="none" d="M0 0h24v24H0z" />{' '}
+                      <path d="M3 9l4-4l4 4m-4 -4v14" />{' '}
+                      <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                    </svg>
+                  </span>
                 </th>
-                <th>Тема</th>
-                <th>Дата создания</th>
-                <th>Тип заявки</th>
-                <th>Приоритет</th>
-                <th>Статус</th>
+                <HeaderCellProps title="Номер заявки" />
+                <th data-name="title" onClick={(e) => sortTickets(e)}>
+                  Тема
+                </th>
+                <th data-name="created_at" onClick={(e) => sortTickets(e)}>
+                  Дата создания
+                </th>
+                <th data-name="type_request" onClick={(e) => sortTickets(e)}>
+                  Тип заявки
+                </th>
+                <th data-name="priority" onClick={(e) => sortTickets(e)}>
+                  Приоритет
+                </th>
+                <th data-name="completed" onClick={(e) => sortTickets(e)}>
+                  Статус
+                </th>
               </tr>
             </thead>
             <tbody>
               {tickets &&
                 tickets.map((ticket) => (
-                  <tr>
+                  <tr key={ticket.ticket_number}>
                     <td>{ticket.ticket_number}</td>
-                    <td>{ticket.description}</td>
+                    <td>{ticket.title}</td>
                     <td>{ticket.created_at}</td>
                     <td>
                       {ticket.type_request == 'question'
