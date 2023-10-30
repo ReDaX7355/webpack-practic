@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, SyntheticEvent } from 'react';
 import { getAllTickets } from './api/requests';
 import Request from './types/Request';
 import IRequest from './types/Request';
@@ -23,7 +23,8 @@ const Tickets: FC = () => {
       });
   }, []);
 
-  const sortTickets = (e) => {
+  const sortTickets = (e: SyntheticEvent) => {
+    e.target = e.target.closest('th');
     const nameField = e.target.dataset.name;
     const order = e.target.dataset.order;
     let sortTickets: IRequest[];
@@ -47,27 +48,6 @@ const Tickets: FC = () => {
           <table className="table-tickets">
             <thead>
               <tr>
-                {/* <th data-name="ticket_number" onClick={(e) => sortTickets(e)}>
-                  Номер заявки
-                  <span>
-                    <svg
-                      className="h-5 w-5 text-green-400"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      {' '}
-                      <path stroke="none" d="M0 0h24v24H0z" />{' '}
-                      <path d="M3 9l4-4l4 4m-4 -4v14" />{' '}
-                      <path d="M21 15l-4 4l-4-4m4 4v-14" />
-                    </svg>
-                  </span>
-                </th> */}
                 <HeaderCell
                   title="Номер заявки"
                   data_name="ticket_number"
@@ -85,9 +65,11 @@ const Tickets: FC = () => {
                 <th data-name="priority" onClick={(e) => sortTickets(e)}>
                   Приоритет
                 </th>
-                <th data-name="completed" onClick={(e) => sortTickets(e)}>
-                  Статус
-                </th>
+                <HeaderCell
+                  title="Статус"
+                  data_name="completed"
+                  sortFunction={sortTickets}
+                />
               </tr>
             </thead>
             <tbody>
