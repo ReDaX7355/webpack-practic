@@ -48,7 +48,7 @@ const Auth = () => {
         <fieldset className="flex flex-col">
           {registration && (
             <input
-              className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
+              className="border-2 border-primary py-1 px-3 rounded focus:outline-2 outline-agree transition-all mt-4"
               {...register('full_name', {
                 required: {
                   value: true,
@@ -66,7 +66,7 @@ const Auth = () => {
             </p>
           )}
           <input
-            className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
+            className="border-2 border-primary py-1 px-3 rounded focus:outline-2 focus:bg-green-100 outline-primary transition-all mt-4"
             {...register('login', {
               required: {
                 value: true,
@@ -84,7 +84,7 @@ const Auth = () => {
 
           {registration && (
             <input
-              className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary transition-all mt-4"
+              className="border-2 border-primary py-1 px-3 rounded focus:outline-2 outline-agree transition-all mt-4"
               {...register('email', {
                 required: {
                   value: true,
@@ -108,7 +108,7 @@ const Auth = () => {
           )}
 
           <input
-            className="border-2 border-secondary py-1 px-3 rounded focus:outline-2 outline-primary mt-4"
+            className="border-2 border-primary py-1 px-3 rounded focus:outline-2 outline-agree mt-4"
             type="password"
             {...register('password', {
               required: {

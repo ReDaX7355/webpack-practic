@@ -12,15 +12,15 @@
   }
 
   .table-tickets td {
-    @apply py-2 px-4 text-left truncate border border-gray-200 w-[50px] max-w-[50px] min-w-[50px];
+    @apply py-2 px-4 text-left truncate border border-gray-200;
   }
 
   .table-tickets th {
-    @apply py-2 px-4 bg-gray-300 text-left truncate w-[50px] max-w-[50px] min-w-[200px];
+    @apply py-2 px-4 bg-primary text-white text-left truncate w-[50px] max-w-[50px] min-w-[180px];
   }
 
   .table-tickets tbody tr {
-    @apply hover:bg-secondary;
+    @apply hover:bg-gray-200;
   }
 
   .table-tickets th:nth-child(2) {
@@ -28,5 +28,15 @@
   }
   .table-tickets td:nth-child(2) {
     @apply max-w-[300px];
+  }
+
+  .table-wrapper::-webkit-scrollbar {
+    @apply w-[100%] h-[8px];
+  }
+  .table-wrapper::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+  }
+  .table-wrapper::-webkit-scrollbar-track {
+    @apply bg-gray-200;
   }
 }

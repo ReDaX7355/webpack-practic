@@ -23,6 +23,24 @@ const Tickets: FC = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const item = document.querySelector('.table-wrapper') as HTMLElement;
+
+    const horizontalScroll = (e) => {
+      /window.addEventListener('wheel', horizontalScroll);
+      if (e.deltaY > 0) item.scrollLeft += 50;
+      else item.scrollLeft -= 50;
+    };
+
+    item.addEventListener('mouseover', horizontalScroll);
+    
+    
+
+    return () => {
+      window.removeEventListener('wheel', horizontalScroll);
+    };
+  }, []);
+
   const sortTickets = (e: SyntheticEvent) => {
     e.target = e.target.closest('th');
     const nameField = e.target.dataset.name;
@@ -42,8 +60,7 @@ const Tickets: FC = () => {
 
   return (
     <div className="px-7">
-      <h3>Tickets</h3>
-      <div className="container overflow-hidden overflow-x-auto m-auto">
+      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5">
         {!isLoading ? (
           <table className="table-tickets">
             <thead>

@@ -24,7 +24,7 @@ const HeaderCell: FC<HeaderCellProps> = ({
         <p>{title}</p>
         {!order ? (
           <svg
-            className="h-4 w-4 text-black"
+            className="h-4 w-4 text-white"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ const HeaderCell: FC<HeaderCellProps> = ({
           </svg>
         ) : order == 'desc' ? (
           <svg
-            className="h-4 w-4 text-black"
+            className="h-4 w-4 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -55,7 +55,7 @@ const HeaderCell: FC<HeaderCellProps> = ({
           </svg>
         ) : (
           <svg
-            className="h-4 w-4 text-black"
+            className="h-4 w-4 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
