@@ -12,7 +12,7 @@ import Root from './Root';
 import Data from './Data';
 import ErrorBoundary from './ErrorBoundary';
 import Auth from './Auth';
-import Tickets from './Tickets';
+import Tickets from './components/Tickets/Tickets';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
