@@ -13,13 +13,13 @@ const HeaderCell: FC<HeaderCellProps> = ({
 }) => {
   const [order, setOrder] = useState('');
 
-  const sortHandler = (e: MouseEvent) => {
+  const sortByTitle = (e: MouseEvent) => {
     sortFunction?.(e);
     order == 'asc' ? setOrder('desc') : setOrder('asc');
   };
 
   return (
-    <th className="" data-name={data_name} onClick={(e) => sortHandler(e)}>
+    <th className="" data-name={data_name} onClick={(e) => sortByTitle(e)}>
       <div className="flex justify-between items-center">
         <p>{children}</p>
 

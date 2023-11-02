@@ -1,13 +1,20 @@
 import React, { FC } from 'react';
 import ITicket from '../../../types/ITicket';
+import { useNavigate } from 'react-router-dom';
 
 interface TableRowProps {
   ticket: ITicket;
 }
 
-const TableRow: FC<TableRowProps> = ({ticket}) => {
+const TableRow: FC<TableRowProps> = ({ ticket }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/ticket/${ticket.ticket_number}`);
+  };
+
   return (
-    <tr key={ticket.ticket_number}>
+    <tr onClick={() => handleClick()}>
       <td>{ticket.ticket_number}</td>
       <td>{ticket.title}</td>
       <td>{ticket.created_at}</td>

@@ -13,6 +13,7 @@ import Data from './Data';
 import ErrorBoundary from './ErrorBoundary';
 import Auth from './Auth';
 import Tickets from './components/Tickets/Tickets';
+import TicketPage from './TicketPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<Auth />} />
       <Route path="/data" element={<Data />} />
       <Route path="/tickets" element={<Tickets />} />
+      <Route path="/ticket/:ticket_number" element={<TicketPage />} />
     </Route>
   )
 );

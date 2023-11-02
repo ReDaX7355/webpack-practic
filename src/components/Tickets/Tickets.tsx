@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-  SyntheticEvent,
-  ChangeEvent,
-} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { getAllTickets } from './../../api/requests';
 import HeaderCell from '../Tickets/TableComponents/HeaderCell';
 import TableRow from '../Tickets/TableComponents/TableRow';
@@ -36,7 +30,7 @@ const Tickets: FC = () => {
 
     const horizontalScroll = (evt) => {
       evt.preventDefault();
-      scrollContainer.scrollLeft += evt.deltaY * 2;
+      scrollContainer.scrollLeft += evt.deltaY / 2;
     };
 
     scrollContainer.addEventListener('wheel', horizontalScroll);
@@ -65,8 +59,13 @@ const Tickets: FC = () => {
 
   return (
     <div className="px-7">
-      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 scroll-smooth rounded-lg overflow-hidden">
-        {!isLoading ? (
+      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 rounded-lg overflow-hidden">
+        {isLoading ? (
+          <>
+            {<div>Загрузка...</div>}
+            <div>{error ? error : 'Ошибка загрузки. Сервер не доступен.'}</div>
+          </>
+        ) : (
           <table className="table-tickets">
             <thead>
               <tr>
@@ -86,14 +85,9 @@ const Tickets: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {tickets && tickets.map((ticket) => <TableRow ticket={ticket} />)}
+              {tickets && tickets.map((ticket) => <TableRow key={ticket.ticket_number} ticket={ticket} />)}
             </tbody>
           </table>
-        ) : (
-          <>
-            {isLoading && <div>Загрузка...</div>}
-            <div>{error ? error : 'Ошибка загрузки. Сервер не доступен.'}</div>
-          </>
         )}
       </div>
     </div>
