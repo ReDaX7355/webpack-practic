@@ -1,8 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-
-const TicketPage = () => {
+import React, { FC, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+const TicketPage: FC = () => {
   const { ticket_number } = useParams();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!ticket_number) {
+      localStorage.setItem('currentTicketId', ticket_number || '');
+      navigate('/tickets');
+    }
+
+    return () => {
+      localStorage.removeItem('currentTicketId');
+    };
+  }, []);
 
   return (
     <div className="container mx-auto">

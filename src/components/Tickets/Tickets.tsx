@@ -59,7 +59,7 @@ const Tickets: FC = () => {
 
   return (
     <div className="px-7">
-      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 rounded-lg overflow-hidden">
+      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 rounded overflow-hidden">
         {isLoading ? (
           <>
             {<div>Загрузка...</div>}
@@ -85,7 +85,10 @@ const Tickets: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {tickets && tickets.map((ticket) => <TableRow key={ticket.ticket_number} ticket={ticket} />)}
+              {tickets &&
+                tickets.map((ticket) => (
+                  <TableRow key={ticket.ticket_number} ticket={ticket} />
+                ))}
             </tbody>
           </table>
         )}

@@ -15,6 +15,8 @@ import Auth from './Auth';
 import Tickets from './components/Tickets/Tickets';
 import TicketPage from './TicketPage';
 
+const ticket_number = localStorage.getItem('currentTicketId');
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>

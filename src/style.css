@@ -8,7 +8,7 @@
   }
 
   .table-tickets {
-    @apply py-2 px-4 table-auto min-w-full max-h-[400px] overflow-y-auto;
+    @apply py-2 px-4 table-auto min-w-full max-h-[400px] overflow-y-auto rounded-lg;
   }
 
   .table-tickets td {
@@ -35,12 +35,12 @@
   }
 
   .table-wrapper::-webkit-scrollbar {
-    @apply w-[100%] h-[8px] rounded;
+    @apply w-[100%] h-[8px];
   }
   .table-wrapper::-webkit-scrollbar-thumb {
-    @apply bg-primary rounded;
+    @apply bg-primary rounded-b;
   }
   .table-wrapper::-webkit-scrollbar-track {
-    @apply bg-gray-200;
+    @apply bg-gray-200 rounded-b;
   }
 }
