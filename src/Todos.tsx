@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
 const Todos = () => {
-  const { data, isLoading, isError } = useQuery('todos', () => {
-    fetch('https://jsonplaceholder.typicode.com/todos').then((res) =>
-      res.json()
-    );
-  });
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isError } = useQuery(
+    ['todos', page],
+    () => {
+      return fetch(
+        `https://jsonplaceholder.typicode.com/todos?_page=${page}`
+      ).then((response) => response.json());
+    },
+    {
+      keepPreviousData: true,
+    }
+  );
 
   if (isLoading) return <p>Загрузка...</p>;
   if (isError) return <p>Ошибка</p>;
@@ -14,11 +21,13 @@ const Todos = () => {
 
   return (
     <div className=" container mx-auto">
+      <button onClick={() => setPage((prev) => prev - 1)}>Назад</button>
+      <button onClick={() => setPage((prev) => prev + 1)}>Далее</button>
       {data.map((todo) => (
-        <li>
-          <p>{todo.id}</p>
-          <p>{todo.title}</p>
-        </li>
+        <div>
+          <span>{todo.id} - </span>
+          <span>{todo.title}</span>
+        </div>
       ))}
     </div>
   );
