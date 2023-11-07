@@ -22,6 +22,12 @@ const App = () => {
       >
         Tickets
       </Link>
+      <Link
+        className="px-4 py-2 bg-primary mx-1 text-white transition hover:bg-agree"
+        to="/todos"
+      >
+        Todos
+      </Link>
     </div>
   );
 };

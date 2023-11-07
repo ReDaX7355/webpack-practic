@@ -14,6 +14,8 @@ import ErrorBoundary from './ErrorBoundary';
 import Auth from './Auth';
 import Tickets from './components/Tickets/Tickets';
 import TicketPage from './TicketPage';
+import Todos from './Todos';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const ticket_number = localStorage.getItem('currentTicketId');
 
@@ -24,9 +26,12 @@ const router = createBrowserRouter(
       <Route path="/data" element={<Data />} />
       <Route path="/tickets" element={<Tickets />} />
       <Route path="/ticket/:ticket_number" element={<TicketPage />} />
+      <Route path="/todos" element={<Todos />} />
     </Route>
   )
 );
+
+const queryClient = new QueryClient();
 
 // Clear the existing HTML content
 document.body.innerHTML = '<div id="root"></div>';
@@ -35,4 +40,8 @@ const rootElement = document.getElementById('root') as HTMLElement;
 
 // Render your React component instead
 const root = createRoot(rootElement);
-root.render(<RouterProvider router={router} />);
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
+  </QueryClientProvider>
+);
