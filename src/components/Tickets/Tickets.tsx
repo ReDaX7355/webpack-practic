@@ -28,6 +28,7 @@ const Tickets: FC = () => {
           }),
       2000
     );
+    console.log('useEffect');
   }, []);
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Tickets: FC = () => {
     return () => {
       window.removeEventListener('mouseleave', horizontalScroll);
     };
+    console.log('useEffect');
   }, []);
 
   const sortTickets = useCallback((e) => {
@@ -62,6 +64,7 @@ const Tickets: FC = () => {
     }
     console.log(sortTickets);
     setTickets(() => [...sortTickets]);
+    console.log('sort');
   }, []);
 
   const handleSearch = useCallback((value: string) => {
@@ -77,7 +80,7 @@ const Tickets: FC = () => {
   return (
     <div className="px-7 ">
       <SearchBar searchFunction={handleSearch} />
-      <div className="table-wrapper container m-auto shadow-lg my-5 rounded max-h-[700px] overflow-auto">
+      <div className="table-wrapper container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>
             <tr>
@@ -94,10 +97,7 @@ const Tickets: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {tickets &&
-              tickets.map((ticket) => (
-                <TableRow key={ticket.ticket_number} ticket={ticket} />
-              ))}
+            {tickets && tickets.map((ticket) => <TableRow ticket={ticket} />)}
           </tbody>
         </table>
       </div>

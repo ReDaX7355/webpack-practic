@@ -17,6 +17,7 @@ const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
         type="search"
         placeholder="Поиск"
         onChange={(e) => setSearchValue(e.target.value)}
+        className="px-3 py-2"
       />
     </form>
   );
