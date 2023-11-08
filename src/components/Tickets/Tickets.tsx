@@ -63,11 +63,14 @@ const Tickets: FC = () => {
     setTickets(() => [...sortTickets]);
   };
 
+  const searchTickets = () => {};
+
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="px-7 ">
+      <SearchBar />
       <div className="table-wrapper container m-auto shadow-lg my-5 rounded max-h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>
