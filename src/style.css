@@ -15,8 +15,8 @@
     @apply py-2 px-4 text-left truncate border border-gray-200;
   }
 
-  th {
-    @apply py-2 px-4 bg-primary text-white text-left truncate w-[50px] max-w-[50px] min-w-[180px];
+  .table-tickets th {
+    @apply py-2 px-4 bg-primary text-white text-left truncate w-[50px] max-w-[50px] min-w-[180px] sticky top-0;
   }
 
   .table-tickets tbody tr {
@@ -30,17 +30,30 @@
     @apply max-w-[300px];
   }
 
-  .table-wrapper {
+  /* .table-wrapper {
     scroll-direction: vertical;
-  }
+  } */
+
+  /* .table-wrapper::-webkit-scrollbar:horizontal {
+    @apply w-[100%] h-[8px];
+  } */
 
   .table-wrapper::-webkit-scrollbar {
-    @apply w-[100%] h-[8px];
+    @apply w-[8px] h-[8px];
   }
-  .table-wrapper::-webkit-scrollbar-thumb {
+
+  .table-wrapper::-webkit-scrollbar-thumb:vertical {
+    @apply bg-primary rounded-r;
+  }
+
+  .table-wrapper::-webkit-scrollbar-track:vertical {
+    @apply bg-gray-200 rounded-r;
+  }
+
+  .table-wrapper::-webkit-scrollbar-thumb:horizontal {
     @apply bg-primary rounded-b;
   }
-  .table-wrapper::-webkit-scrollbar-track {
+  .table-wrapper::-webkit-scrollbar-track:horizontal {
     @apply bg-gray-200 rounded-b;
   }
 }

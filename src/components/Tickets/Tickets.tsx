@@ -67,8 +67,8 @@ const Tickets: FC = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="px-7">
-      <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 rounded overflow-hidden">
+    <div className="px-7 ">
+      <div className="table-wrapper container m-auto shadow-lg my-5 rounded max-h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>
             <tr>
