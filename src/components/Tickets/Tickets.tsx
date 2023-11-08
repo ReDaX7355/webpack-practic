@@ -12,15 +12,21 @@ const Tickets: FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllTickets()
-      .then((res) => {
-        setTickets(res);
-        setIsLoading(false);
-      })
-      .catch((res) => {
-        setError(res.status);
-        // setIsLoading(false);
-      });
+    setTimeout(
+      () =>
+        getAllTickets()
+          .then((res) => {
+            setTickets(res);
+          })
+          .catch((res) => {
+            console.log(res);
+            setError(res.status);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          }),
+      2000
+    );
   }, []);
 
   useEffect(() => {
@@ -57,41 +63,34 @@ const Tickets: FC = () => {
     setTickets(() => [...sortTickets]);
   };
 
+  if (isLoading) return <div>Загрузка...</div>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div className="px-7">
       <div className="table-wrapper container overflow-hidden overflow-x-auto m-auto shadow-lg my-5 rounded overflow-hidden">
-        {isLoading ? (
-          <>
-            {<div>Загрузка...</div>}
-            <div>{error ? error : 'Ошибка загрузки. Сервер не доступен.'}</div>
-          </>
-        ) : (
-          <table className="table-tickets">
-            <thead>
-              <tr>
-                <HeaderCell
-                  data_name="ticket_number"
-                  sortFunction={sortTickets}
-                >
-                  Номер заявки
-                </HeaderCell>
-                <HeaderCell data_name="title">Тема</HeaderCell>
-                <HeaderCell data_name="created_at">Дата создания</HeaderCell>
-                <HeaderCell data_name="type_request">Тип заявки</HeaderCell>
-                <HeaderCell data_name="priority">Приоритет</HeaderCell>
-                <HeaderCell data_name="completed" sortFunction={sortTickets}>
-                  Статус
-                </HeaderCell>
-              </tr>
-            </thead>
-            <tbody>
-              {tickets &&
-                tickets.map((ticket) => (
-                  <TableRow key={ticket.ticket_number} ticket={ticket} />
-                ))}
-            </tbody>
-          </table>
-        )}
+        <table className="table-tickets">
+          <thead>
+            <tr>
+              <HeaderCell data_name="ticket_number" sortFunction={sortTickets}>
+                Номер заявки
+              </HeaderCell>
+              <HeaderCell data_name="title">Тема</HeaderCell>
+              <HeaderCell data_name="created_at">Дата создания</HeaderCell>
+              <HeaderCell data_name="type_request">Тип заявки</HeaderCell>
+              <HeaderCell data_name="priority">Приоритет</HeaderCell>
+              <HeaderCell data_name="completed" sortFunction={sortTickets}>
+                Статус
+              </HeaderCell>
+            </tr>
+          </thead>
+          <tbody>
+            {tickets &&
+              tickets.map((ticket) => (
+                <TableRow key={ticket.ticket_number} ticket={ticket} />
+              ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
