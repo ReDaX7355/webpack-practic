@@ -15,7 +15,7 @@
     @apply py-2 px-4 text-left truncate border border-gray-200;
   }
 
-  .table-tickets th {
+  th {
     @apply py-2 px-4 bg-primary text-white text-left truncate w-[50px] max-w-[50px] min-w-[180px];
   }
 
