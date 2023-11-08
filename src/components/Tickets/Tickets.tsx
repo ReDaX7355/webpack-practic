@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
-import { getAllTickets } from './../../api/requests';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { getAllTickets, searchTickets } from './../../api/requests';
 import HeaderCell from '../Tickets/TableComponents/HeaderCell';
 import TableRow from '../Tickets/TableComponents/TableRow';
 import ITicket from '../../types/ITicket';
+import SearchBar from '../SearchBar';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>([]);
@@ -46,7 +47,7 @@ const Tickets: FC = () => {
     };
   }, []);
 
-  const sortTickets = (e) => {
+  const sortTickets = useCallback((e) => {
     e.target = e.target.closest('th');
     const nameField = e.target.dataset.name;
     const order = e.target.dataset.order;
@@ -61,16 +62,21 @@ const Tickets: FC = () => {
     }
     console.log(sortTickets);
     setTickets(() => [...sortTickets]);
-  };
+  }, []);
 
-  const searchTickets = () => {};
+  const handleSearch = useCallback((value: string) => {
+    searchTickets(value).then((data) => {
+      console.log(data);
+      setTickets(data);
+    });
+  }, []);
 
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="px-7 ">
-      <SearchBar />
+      <SearchBar searchFunction={handleSearch} />
       <div className="table-wrapper container m-auto shadow-lg my-5 rounded max-h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>

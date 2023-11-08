@@ -1,17 +1,18 @@
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 
 interface SearchBarProps {
   searchFunction: (value: string) => void;
 }
 
-const SearchBar: FC<SearchBarProps> = ({ searchFunction }) => {
+const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
   const [searchValue, setSearchValue] = useState('');
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     searchFunction(searchValue);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <input
         type="search"
         placeholder="Поиск"
@@ -19,6 +20,6 @@ const SearchBar: FC<SearchBarProps> = ({ searchFunction }) => {
       />
     </form>
   );
-};
+});
 
 export default SearchBar;
