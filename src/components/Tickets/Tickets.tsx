@@ -28,7 +28,6 @@ const Tickets: FC = () => {
           }),
       2000
     );
-    console.log('useEffect');
   }, []);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ const Tickets: FC = () => {
     return () => {
       window.removeEventListener('mouseleave', horizontalScroll);
     };
-    console.log('useEffect');
   }, []);
 
   const sortTickets = useCallback((e) => {
@@ -64,7 +62,6 @@ const Tickets: FC = () => {
     }
     console.log(sortTickets);
     setTickets(() => [...sortTickets]);
-    console.log('sort');
   }, []);
 
   const handleSearch = useCallback((value: string) => {
