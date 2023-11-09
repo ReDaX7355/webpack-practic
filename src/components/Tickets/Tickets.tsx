@@ -47,7 +47,7 @@ const Tickets: FC = () => {
     };
   }, []);
 
-  const sortTickets = useCallback((e) => {
+  const sortTickets = (e) => {
     e.target = e.target.closest('th');
     const nameField = e.target.dataset.name;
     const order = e.target.dataset.order;
@@ -60,9 +60,10 @@ const Tickets: FC = () => {
       sortTickets = tickets.sort((a, b) => a[nameField] - b[nameField]);
       e.target.setAttribute('data-order', 'asc');
     }
+    console.log('sort');
     console.log(sortTickets);
     setTickets(() => [...sortTickets]);
-  }, []);
+  };
 
   const handleSearch = useCallback((value: string) => {
     searchTickets(value).then((data) => {
@@ -94,7 +95,10 @@ const Tickets: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {tickets && tickets.map((ticket) => <TableRow ticket={ticket} />)}
+            {tickets &&
+              tickets.map((ticket) => (
+                <TableRow key={ticket.ticket_number} ticket={ticket} />
+              ))}
           </tbody>
         </table>
       </div>

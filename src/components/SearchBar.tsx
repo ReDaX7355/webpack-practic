@@ -6,6 +6,7 @@ interface SearchBarProps {
 
 const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
   const [searchValue, setSearchValue] = useState('');
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     searchFunction(searchValue);
