@@ -5,6 +5,7 @@ import TableRow from '../Tickets/TableComponents/TableRow';
 import ITicket from '../../types/ITicket';
 import SearchBar from '../SearchBar';
 import { useSearchParams } from 'react-router-dom';
+import SerachParameters from '../SearchParameters';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>([]);
@@ -13,7 +14,6 @@ const Tickets: FC = () => {
   const [error, setError] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const searching = searchParams.get('search');
 
   useEffect(() => {
     setIsLoading(true);
@@ -78,19 +78,26 @@ const Tickets: FC = () => {
     });
   }, []);
 
+  const clearSearch = () => {
+    getAllTickets()
+      .then((res) => {
+        setTickets(res);
+      })
+      .catch((res) => {
+        console.log(res);
+        setError(res.status);
+      })
+      .finally(() => setSearchParams({}));
+  };
+
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="px-7 ">
       <SearchBar searchFunction={handleSearch} />
-      {searching && (
-        <p>
-          Результаты поиска: {searching}{' '}
-          <span onClick={() => setSearchParams({})}>Очистить</span>
-        </p>
-      )}
-      <div className="table-wrapper container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
+      <SerachParameters clearSearch={clearSearch} />
+      <div className="table-wrapper bg-white container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>
             <tr>
