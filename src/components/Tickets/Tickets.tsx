@@ -53,6 +53,7 @@ const Tickets: FC = () => {
     const order = e.target.dataset.order;
     let sortTickets: ITicket[];
     console.log(nameField);
+    console.log(order);
     if (order == 'asc') {
       sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
       e.target.setAttribute('data-order', 'desc');
@@ -82,14 +83,20 @@ const Tickets: FC = () => {
         <table className="table-tickets">
           <thead>
             <tr>
-              <HeaderCell data_name="ticket_number" sortFunction={sortTickets}>
+              <HeaderCell dataName="ticket_number" sortFunction={sortTickets}>
                 Номер заявки
               </HeaderCell>
-              <HeaderCell data_name="title">Тема</HeaderCell>
-              <HeaderCell data_name="created_at">Дата создания</HeaderCell>
-              <HeaderCell data_name="type_request">Тип заявки</HeaderCell>
-              <HeaderCell data_name="priority">Приоритет</HeaderCell>
-              <HeaderCell data_name="completed" sortFunction={sortTickets}>
+              <HeaderCell dataName="title">Тема</HeaderCell>
+              <HeaderCell dataName="created_at" sortFunction={sortTickets}>
+                Дата создания
+              </HeaderCell>
+              <HeaderCell dataName="type_request" sortFunction={sortTickets}>
+                Тип заявки
+              </HeaderCell>
+              <HeaderCell dataName="priority" sortFunction={sortTickets}>
+                Приоритет
+              </HeaderCell>
+              <HeaderCell dataName="completed" sortFunction={sortTickets}>
                 Статус
               </HeaderCell>
             </tr>

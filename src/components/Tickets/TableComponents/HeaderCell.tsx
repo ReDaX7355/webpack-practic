@@ -2,13 +2,13 @@ import React, { FC, MouseEvent, ReactNode, useState } from 'react';
 
 interface HeaderCellProps {
   children: ReactNode;
-  data_name: string;
+  dataName: string;
   sortFunction?: (e: MouseEvent) => void;
 }
 
 const HeaderCell: FC<HeaderCellProps> = ({
   children,
-  data_name,
+  dataName,
   sortFunction,
 }) => {
   const [order, setOrder] = useState('');
@@ -19,7 +19,7 @@ const HeaderCell: FC<HeaderCellProps> = ({
   };
 
   return (
-    <th className="" data-name={data_name} onClick={(e) => sortByTitle(e)}>
+    <th className="" data-name={dataName} onClick={(e) => sortByTitle(e)}>
       <div className="flex justify-between items-center">
         <p>{children}</p>
 
