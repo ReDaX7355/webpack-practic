@@ -5,7 +5,7 @@ import TableRow from '../Tickets/TableComponents/TableRow';
 import ITicket from '../../types/ITicket';
 import SearchBar from '../SearchBar';
 import { useSearchParams } from 'react-router-dom';
-import SerachParameters from '../SearchParameters';
+import SearchParameters from '../SearchParameters';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>([]);
@@ -96,7 +96,7 @@ const Tickets: FC = () => {
   return (
     <div className="px-7 ">
       <SearchBar searchFunction={handleSearch} />
-      <SerachParameters clearSearch={clearSearch} />
+      <SearchParameters clearSearch={clearSearch} />
       <div className="table-wrapper bg-white container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>

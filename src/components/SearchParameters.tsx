@@ -5,16 +5,27 @@ interface SerachParametersProps {
   clearSearch: () => void;
 }
 
-const SerachParameters: FC<SerachParametersProps> = ({ clearSearch }) => {
+const SearchParameters: FC<SerachParametersProps> = ({ clearSearch }) => {
   const [searchParams] = useSearchParams();
-  const searching = searchParams.get('search');
+  const searchParam = searchParams.get('search');
 
   return (
-    <div>
-      <p>Результаты поиска: {searching}</p>
-      <button onClick={clearSearch}>Очистить</button>
+    <div className="h-5 mt-5 flex items-center gap-5">
+      {searchParam && (
+        <>
+          <p>
+            Результаты поиска: <b>{searchParam}</b>
+          </p>
+          <button
+            onClick={clearSearch}
+            className="py-1 px-2 bg-primary text-white rounded"
+          >
+            Очистить
+          </button>
+        </>
+      )}
     </div>
   );
 };
 
-export default SerachParameters;
+export default SearchParameters;
