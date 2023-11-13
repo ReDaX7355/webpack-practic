@@ -87,15 +87,9 @@ const Tickets: FC = () => {
                 Номер заявки
               </HeaderCell>
               <HeaderCell dataName="title">Тема</HeaderCell>
-              <HeaderCell dataName="created_at" sortFunction={sortTickets}>
-                Дата создания
-              </HeaderCell>
-              <HeaderCell dataName="type_request" sortFunction={sortTickets}>
-                Тип заявки
-              </HeaderCell>
-              <HeaderCell dataName="priority" sortFunction={sortTickets}>
-                Приоритет
-              </HeaderCell>
+              <HeaderCell dataName="created_at">Дата создания</HeaderCell>
+              <HeaderCell dataName="type_request">Тип заявки</HeaderCell>
+              <HeaderCell dataName="priority">Приоритет</HeaderCell>
               <HeaderCell dataName="completed" sortFunction={sortTickets}>
                 Статус
               </HeaderCell>

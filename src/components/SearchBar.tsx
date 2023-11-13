@@ -10,13 +10,15 @@ const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     searchFunction(searchValue);
+    setSearchValue('');
   };
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <input
-        type="search"
+        type="text"
         placeholder="Поиск"
+        value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         className="px-3 py-2"
       />
