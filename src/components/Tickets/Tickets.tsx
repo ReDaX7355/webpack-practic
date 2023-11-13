@@ -6,6 +6,7 @@ import ITicket from '../../types/ITicket';
 import SearchBar from '../SearchBar';
 import { useSearchParams } from 'react-router-dom';
 import SearchParameters from '../SearchParameters';
+import TableLoader from '../TableLoader';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>([]);
@@ -95,7 +96,7 @@ const Tickets: FC = () => {
       <SearchParameters clearSearch={clearSearch} />
 
       {isLoading ? (
-        <div>Загрузка...</div>
+        <TableLoader />
       ) : (
         <div className="table-wrapper bg-white container m-auto shadow-lg my-4 rounded h-[700px] overflow-auto">
           <table className="table-tickets">
