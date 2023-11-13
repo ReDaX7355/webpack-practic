@@ -26,7 +26,6 @@ const router = createBrowserRouter(
       <Route path="/data" element={<Data />} />
       <Route
         path="/tickets"
-        loader={() => getAllTickets()}
         element={
           // <ProtectedRoute>
           <Tickets />
