@@ -17,6 +17,7 @@ import Todos from './Todos';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Error401 from './components/Error401';
 import ProtectedRoute from './components/ProtectedRoute';
+import { getAllTickets } from './api/requests';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/data" element={<Data />} />
       <Route
         path="/tickets"
+        loader={() => getAllTickets()}
         element={
           // <ProtectedRoute>
           <Tickets />

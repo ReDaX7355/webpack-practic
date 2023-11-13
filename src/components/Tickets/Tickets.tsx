@@ -4,12 +4,16 @@ import HeaderCell from '../Tickets/TableComponents/HeaderCell';
 import TableRow from '../Tickets/TableComponents/TableRow';
 import ITicket from '../../types/ITicket';
 import SearchBar from '../SearchBar';
+import { useSearchParams } from 'react-router-dom';
 
 const Tickets: FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState('');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searching = searchParams.get('search');
 
   useEffect(() => {
     setIsLoading(true);
@@ -70,6 +74,7 @@ const Tickets: FC = () => {
     searchTickets(value).then((data) => {
       console.log(data);
       setTickets(data);
+      setSearchParams({ search: value });
     });
   }, []);
 
@@ -79,6 +84,12 @@ const Tickets: FC = () => {
   return (
     <div className="px-7 ">
       <SearchBar searchFunction={handleSearch} />
+      {searching && (
+        <p>
+          Результаты поиска: {searching}{' '}
+          <span onClick={() => setSearchParams({})}>Очистить</span>
+        </p>
+      )}
       <div className="table-wrapper container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
         <table className="table-tickets">
           <thead>
