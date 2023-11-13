@@ -10,7 +10,7 @@ const SearchParameters: FC<SerachParametersProps> = ({ clearSearch }) => {
   const searchParam = searchParams.get('search');
 
   return (
-    <div className="h-5 mt-5 flex items-center gap-5">
+    <div className="h-5 mt-4 flex items-center gap-3 text-sm">
       {searchParam && (
         <>
           <p>

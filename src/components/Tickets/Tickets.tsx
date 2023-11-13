@@ -14,11 +14,12 @@ const Tickets: FC = () => {
   const [error, setError] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const serachParam = searchParams.get('search');
 
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(
-      () =>
+    setTimeout(() => {
+      if (!serachParam) {
         getAllTickets()
           .then((res) => {
             setTickets(res);
@@ -29,27 +30,22 @@ const Tickets: FC = () => {
           })
           .finally(() => {
             setIsLoading(false);
-          }),
-      2000
-    );
-  }, []);
-
-  useEffect(() => {
-    const scrollContainer = document.querySelector(
-      '.table-wrapper'
-    ) as HTMLElement;
-
-    const horizontalScroll = (evt) => {
-      evt.preventDefault();
-      scrollContainer.scrollLeft += evt.deltaY / 2;
-    };
-
-    scrollContainer.addEventListener('wheel', horizontalScroll);
-
-    return () => {
-      window.removeEventListener('mouseleave', horizontalScroll);
-    };
-  }, []);
+          });
+      } else {
+        searchTickets(serachParam)
+          .then((res) => {
+            setTickets(res);
+          })
+          .catch((res) => {
+            console.log(res);
+            setError(res.status);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    }, 2000);
+  }, [searchParams]);
 
   const sortTickets = (e) => {
     e.target = e.target.closest('th');
@@ -90,37 +86,42 @@ const Tickets: FC = () => {
       .finally(() => setSearchParams({}));
   };
 
-  if (isLoading) return <div>Загрузка...</div>;
+  // if (isLoading) return <div>Загрузка...</div>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="px-7 ">
       <SearchBar searchFunction={handleSearch} />
       <SearchParameters clearSearch={clearSearch} />
-      <div className="table-wrapper bg-white container m-auto shadow-lg my-5 rounded h-[700px] overflow-auto">
-        <table className="table-tickets">
-          <thead>
-            <tr>
-              <HeaderCell dataName="ticket_number" sortFunction={sortTickets}>
-                Номер заявки
-              </HeaderCell>
-              <HeaderCell dataName="title">Тема</HeaderCell>
-              <HeaderCell dataName="created_at">Дата создания</HeaderCell>
-              <HeaderCell dataName="type_request">Тип заявки</HeaderCell>
-              <HeaderCell dataName="priority">Приоритет</HeaderCell>
-              <HeaderCell dataName="completed" sortFunction={sortTickets}>
-                Статус
-              </HeaderCell>
-            </tr>
-          </thead>
-          <tbody>
-            {tickets &&
-              tickets.map((ticket) => (
-                <TableRow key={ticket.ticket_number} ticket={ticket} />
-              ))}
-          </tbody>
-        </table>
-      </div>
+
+      {isLoading ? (
+        <div>Загрузка...</div>
+      ) : (
+        <div className="table-wrapper bg-white container m-auto shadow-lg my-4 rounded h-[700px] overflow-auto">
+          <table className="table-tickets">
+            <thead>
+              <tr>
+                <HeaderCell dataName="ticket_number" sortFunction={sortTickets}>
+                  Номер заявки
+                </HeaderCell>
+                <HeaderCell dataName="title">Тема</HeaderCell>
+                <HeaderCell dataName="created_at">Дата создания</HeaderCell>
+                <HeaderCell dataName="type_request">Тип заявки</HeaderCell>
+                <HeaderCell dataName="priority">Приоритет</HeaderCell>
+                <HeaderCell dataName="completed" sortFunction={sortTickets}>
+                  Статус
+                </HeaderCell>
+              </tr>
+            </thead>
+            <tbody>
+              {tickets &&
+                tickets.map((ticket) => (
+                  <TableRow key={ticket.ticket_number} ticket={ticket} />
+                ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

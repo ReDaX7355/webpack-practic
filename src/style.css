@@ -20,7 +20,7 @@
   }
 
   .table-tickets tbody tr {
-    @apply hover:bg-gray-200;
+    @apply hover:bg-gray-300;
   }
 
   .table-tickets th:nth-child(2) {
