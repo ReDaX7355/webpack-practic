@@ -26,9 +26,9 @@ const router = createBrowserRouter(
       <Route
         path="/tickets"
         element={
-          <ProtectedRoute>
-            <Tickets />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <Tickets />
+          // </ProtectedRoute>
         }
       />
       <Route path="/ticket/:ticket_number" element={<TicketPage />} />
