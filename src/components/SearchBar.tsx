@@ -20,7 +20,7 @@ const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
         placeholder="Поиск"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        className="px-3 py-1.5 rounded-l border-y-2 border-l-2 outline-none border-transparent focus:border-primary"
+        className="px-3 py-1.5 rounded-l border-y-2 border-l-2 outline-none border-transparent focus:border-primary w-[100%] max-w-[500px]"
       />
       <button className="p-1.5 bg-primary rounded-r border-2 border-primary hover:border-agree hover:bg-agree trandition">
         <svg
