@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const Todos = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError } = useQuery(
+  const query = useQuery(
     ['todos', page],
     () => {
       return fetch(
@@ -15,15 +15,15 @@ const Todos = () => {
     }
   );
 
-  if (isLoading) return <p>Загрузка...</p>;
-  if (isError) return <p>Ошибка</p>;
-  if (!data) return <p>Нет данных</p>;
+  if (query.isLoading) return <p>Загрузка...</p>;
+  if (query.isError) return <p>Ошибка</p>;
+  if (!query.data) return <p>Нет данных</p>;
 
   return (
     <div className=" container mx-auto">
       <button onClick={() => setPage((prev) => prev - 1)}>Назад</button>
       <button onClick={() => setPage((prev) => prev + 1)}>Далее</button>
-      {data.map((todo) => (
+      {query.data.map((todo) => (
         <div>
           <span>{todo.id} - </span>
           <span>{todo.title}</span>
