@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { getAllTickets, searchTickets } from './../../api/requests';
 import HeaderCell from '../Tickets/TableComponents/HeaderCell';
 import TableRow from '../Tickets/TableComponents/TableRow';
@@ -10,10 +10,46 @@ import { useQuery } from 'react-query';
 
 const Tickets: FC = () => {
   const [searchValue, setSearchValue] = useState('');
-  const {data, isLoading, isError, error, refetch} = useQuery('tickets', () => searchTickets(searchValue));
+  const [sortBy, setSortBy] = useState<[string, string] | []>([]);
+  const { data, isLoading, isError, error, refetch } = useQuery<ITicket[]>(
+    'tickets',
+    () => searchTickets(searchValue),
+    {
+      refetchOnWindowFocus: false,
+      keepPreviousData: true,
+    }
+  );
+
+  const sortedData = useMemo(() => {
+    if (sortBy && data) {
+      if (sortBy[1] == 'asc') {
+        return [...data].sort((a, b) => {
+          if (a[sortBy[0]] > b[sortBy[0]]) {
+            return 1;
+          } else if (a[sortBy[0]] > b[sortBy[0]]) {
+            return -1;
+          }
+          return 0;
+        });
+      } else {
+        return [...data].sort((a, b) => {
+          if (a[sortBy[0]] > b[sortBy[0]]) {
+            return -1;
+          } else if (a[sortBy[0]] < b[sortBy[0]]) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+    return data;
+  }, [data, sortBy]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const serachParam = searchParams.get('search');
+
+  useEffect(() => {
+    refetch();
+  }, [searchParams]);
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -47,39 +83,37 @@ const Tickets: FC = () => {
   // }, [searchParams]);
 
   const sortTickets = (e) => {
-    // e.target = e.target.closest('th');
-    // const nameField = e.target.dataset.name;
-    // const order = e.target.dataset.order;
-    // let sortTickets: ITicket[];
-    // console.log(nameField);
-    // console.log(order);
-    // if (order == 'asc') {
-    //   sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
-    //   e.target.setAttribute('data-order', 'desc');
-    // } else {
-    //   sortTickets = tickets.sort((a, b) => a[nameField] - b[nameField]);
-    //   e.target.setAttribute('data-order', 'asc');
-    // }
-    // console.log('sort');
-    // console.log(sortTickets);
-    // setTickets(() => [...sortTickets]);
+    e.target = e.target.closest('th');
+    const nameField = e.target.dataset.name;
+    const order = e.target.dataset.order;
+    if (order == 'asc') {
+      setSortBy([nameField, 'asc']);
+      e.target.setAttribute('data-order', 'desc');
+    } else {
+      setSortBy([nameField, 'desc']);
+      e.target.setAttribute('data-order', 'asc');
+    }
+    console.log('sort');
   };
 
   const handleSearch = useCallback((value: string) => {
-    setSearchParams({'search': value});
+    setSearchParams({ search: value });
     refetch();
   }, []);
 
   const clearSearch = () => {
-    refetch();
+    searchParams.delete('search');
+    setSearchParams(searchParams);
   };
-
-  // if (isLoading) return <div>Загрузка...</div>;
   if (isError) return <p>{error.message}</p>;
 
   return (
     <div className="px-7 ">
-      <SearchBar setSearchValue={setSearchValue} searchValue={searchValue} searchFunction={handleSearch} />
+      <SearchBar
+        setSearchValue={setSearchValue}
+        searchValue={searchValue}
+        searchFunction={handleSearch}
+      />
       <SearchParameters clearSearch={clearSearch} />
 
       {isLoading ? (
@@ -92,18 +126,26 @@ const Tickets: FC = () => {
                 <HeaderCell dataName="ticket_number" sortFunction={sortTickets}>
                   Номер заявки
                 </HeaderCell>
-                <HeaderCell dataName="title">Тема</HeaderCell>
-                <HeaderCell dataName="created_at">Дата создания</HeaderCell>
-                <HeaderCell dataName="type_request">Тип заявки</HeaderCell>
-                <HeaderCell dataName="priority">Приоритет</HeaderCell>
+                <HeaderCell dataName="title" sortFunction={sortTickets}>
+                  Тема
+                </HeaderCell>
+                <HeaderCell dataName="created_at" sortFunction={sortTickets}>
+                  Дата создания
+                </HeaderCell>
+                <HeaderCell dataName="type_request" sortFunction={sortTickets}>
+                  Тип заявки
+                </HeaderCell>
+                <HeaderCell dataName="priority" sortFunction={sortTickets}>
+                  Приоритет
+                </HeaderCell>
                 <HeaderCell dataName="completed" sortFunction={sortTickets}>
                   Статус
                 </HeaderCell>
               </tr>
             </thead>
             <tbody>
-              {data &&
-                data.map((ticket: ITicket) => (
+              {sortedData &&
+                sortedData.map((ticket: ITicket) => (
                   <TableRow key={ticket.ticket_number} ticket={ticket} />
                 ))}
             </tbody>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const SERVER_URL: string = 'https://expert-space-disco-9j9vvx6xxvg2ppx4-3000.app.github.dev:3000';
+export const SERVER_URL: string = 'https://localhost:3000';
 
 async function getTickets(query: string, endpoint = SERVER_URL) {
   try {
@@ -27,5 +27,10 @@ export const getTicketById = (id: string | number) => getTickets(`id=${id}`);
 export const getTicketsByKey = (key: string, value: string) =>
   getTickets(`${key}=${value}`);
 
-export const searchTickets = async (value: string | number) =>
-  getTickets(`q=${value}`);
+export const searchTickets = async (value: string | number) => {
+  if (value) {
+    return getTickets(`q=${value}`);
+  } else {
+    return getAllTickets();
+  }
+};
