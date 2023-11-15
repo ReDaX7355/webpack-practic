@@ -47,6 +47,7 @@ const Tickets: FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+
   useEffect(() => {
     refetch();
   }, [searchParams]);
