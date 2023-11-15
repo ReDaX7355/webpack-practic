@@ -15,6 +15,8 @@ const Todos = () => {
     }
   );
 
+  console.log(data);
+
   if (isLoading) return <p>Загрузка...</p>;
   if (isError) return <p>Ошибка</p>;
   if (!data) return <p>Нет данных</p>;
