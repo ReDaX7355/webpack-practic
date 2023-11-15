@@ -66,6 +66,7 @@ const Tickets: FC = () => {
   };
 
   const handleSearch = useCallback((value: string) => {
+    setSearchParams({'search': value});
     refetch();
   }, []);
 
