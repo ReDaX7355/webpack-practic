@@ -25,18 +25,18 @@ const Tickets: FC = () => {
       if (sortBy[1] == 'asc') {
         return [...data].sort((a, b) => {
           if (a[sortBy[0]] > b[sortBy[0]]) {
-            return 1;
-          } else if (a[sortBy[0]] < b[sortBy[0]]) {
             return -1;
+          } else if (a[sortBy[0]] < b[sortBy[0]]) {
+            return 1;
           }
           return 0;
         });
       } else {
         return [...data].sort((a, b) => {
           if (a[sortBy[0]] > b[sortBy[0]]) {
-            return -1;
-          } else if (a[sortBy[0]] < b[sortBy[0]]) {
             return 1;
+          } else if (a[sortBy[0]] < b[sortBy[0]]) {
+            return -1;
           }
           return 0;
         });
