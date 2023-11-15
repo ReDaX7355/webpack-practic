@@ -26,7 +26,7 @@ const Tickets: FC = () => {
         return [...data].sort((a, b) => {
           if (a[sortBy[0]] > b[sortBy[0]]) {
             return 1;
-          } else if (a[sortBy[0]] > b[sortBy[0]]) {
+          } else if (a[sortBy[0]] < b[sortBy[0]]) {
             return -1;
           }
           return 0;
