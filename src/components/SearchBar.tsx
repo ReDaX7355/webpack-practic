@@ -1,11 +1,12 @@
 import React, { FC, FormEvent, useState } from 'react';
 
 interface SearchBarProps {
+  setSearchValue: (value: string) => void;
+  searchValue: string;
   searchFunction: (value: string) => void;
 }
 
-const SearchBar: FC<SearchBarProps> = React.memo(({ searchFunction }) => {
-  const [searchValue, setSearchValue] = useState('');
+const SearchBar: FC<SearchBarProps> = React.memo(({setSearchValue, searchValue, searchFunction }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

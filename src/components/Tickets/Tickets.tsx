@@ -6,92 +6,79 @@ import ITicket from '../../types/ITicket';
 import SearchBar from '../SearchBar';
 import { useSearchParams } from 'react-router-dom';
 import SearchParameters from '../SearchParameters';
+import { useQuery } from 'react-query';
 
 const Tickets: FC = () => {
-  const [tickets, setTickets] = useState<ITicket[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [error, setError] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const {data, isLoading, isError, error, refetch} = useQuery('tickets', () => searchTickets(searchValue));
 
   const [searchParams, setSearchParams] = useSearchParams();
   const serachParam = searchParams.get('search');
 
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      if (!serachParam) {
-        getAllTickets()
-          .then((res) => {
-            setTickets(res);
-          })
-          .catch((res) => {
-            console.log(res);
-            setError(res.status);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      } else {
-        searchTickets(serachParam)
-          .then((res) => {
-            setTickets(res);
-          })
-          .catch((res) => {
-            console.log(res);
-            setError(res.status);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }, 2000);
-  }, [searchParams]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   setTimeout(() => {
+  //     if (!serachParam) {
+  //       getAllTickets()
+  //         .then((res) => {
+  //           setTickets(res);
+  //         })
+  //         .catch((res) => {
+  //           console.log(res);
+  //           setError(res.status);
+  //         })
+  //         .finally(() => {
+  //           setIsLoading(false);
+  //         });
+  //     } else {
+  //       searchTickets(serachParam)
+  //         .then((res) => {
+  //           setTickets(res);
+  //         })
+  //         .catch((res) => {
+  //           console.log(res);
+  //           setError(res.status);
+  //         })
+  //         .finally(() => {
+  //           setIsLoading(false);
+  //         });
+  //     }
+  //   }, 2000);
+  // }, [searchParams]);
 
   const sortTickets = (e) => {
-    e.target = e.target.closest('th');
-    const nameField = e.target.dataset.name;
-    const order = e.target.dataset.order;
-    let sortTickets: ITicket[];
-    console.log(nameField);
-    console.log(order);
-    if (order == 'asc') {
-      sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
-      e.target.setAttribute('data-order', 'desc');
-    } else {
-      sortTickets = tickets.sort((a, b) => a[nameField] - b[nameField]);
-      e.target.setAttribute('data-order', 'asc');
-    }
-    console.log('sort');
-    console.log(sortTickets);
-    setTickets(() => [...sortTickets]);
+    // e.target = e.target.closest('th');
+    // const nameField = e.target.dataset.name;
+    // const order = e.target.dataset.order;
+    // let sortTickets: ITicket[];
+    // console.log(nameField);
+    // console.log(order);
+    // if (order == 'asc') {
+    //   sortTickets = tickets.sort((a, b) => b[nameField] - a[nameField]);
+    //   e.target.setAttribute('data-order', 'desc');
+    // } else {
+    //   sortTickets = tickets.sort((a, b) => a[nameField] - b[nameField]);
+    //   e.target.setAttribute('data-order', 'asc');
+    // }
+    // console.log('sort');
+    // console.log(sortTickets);
+    // setTickets(() => [...sortTickets]);
   };
 
   const handleSearch = useCallback((value: string) => {
-    searchTickets(value).then((data) => {
-      console.log(data);
-      setTickets(data);
-      setSearchParams({ search: value });
-    });
+    refetch();
   }, []);
 
   const clearSearch = () => {
-    getAllTickets()
-      .then((res) => {
-        setTickets(res);
-      })
-      .catch((res) => {
-        console.log(res);
-        setError(res.status);
-      })
-      .finally(() => setSearchParams({}));
+    refetch();
   };
 
   // if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <p>{error}</p>;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <div className="px-7 ">
-      <SearchBar searchFunction={handleSearch} />
+      <SearchBar setSearchValue={setSearchValue} searchValue={searchValue} searchFunction={handleSearch} />
       <SearchParameters clearSearch={clearSearch} />
 
       {isLoading ? (
@@ -114,8 +101,8 @@ const Tickets: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {tickets &&
-                tickets.map((ticket) => (
+              {data &&
+                data.map((ticket: ITicket) => (
                   <TableRow key={ticket.ticket_number} ticket={ticket} />
                 ))}
             </tbody>
