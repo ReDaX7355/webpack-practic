@@ -58,10 +58,10 @@
   }
 
   .cog {
-    @apply relative w-6 h-6  transition ml-5;
+    @apply relative w-6 h-6 hover:text-primary transition ml-5;
   }
 
-  .cog-active {
+  .back-active {
     @apply before:block before:left-0 before:top-0 before:bottom-0 before:right-0 before:z-10 before:fixed;
   }
 }

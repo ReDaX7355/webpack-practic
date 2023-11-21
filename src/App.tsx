@@ -52,7 +52,7 @@ const App = () => {
           />
         </svg>
         <div
-          className={visibleModal ? 'cog-active' : ''}
+          className={visibleModal ? 'back-active' : ''}
           onClick={() => setVisibleModal(false)}
         ></div>
         {visibleModal && <Modal />}
