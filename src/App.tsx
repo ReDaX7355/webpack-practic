@@ -37,7 +37,7 @@ const App = () => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="w-6 h-6  hover:text-primary transition ml-5"
+          className="cog"
           onClick={() => setVisibleModal((prev) => !prev)}
         >
           <path
@@ -51,6 +51,10 @@ const App = () => {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
+        <div
+          className={visibleModal ? 'cog-active' : ''}
+          onClick={() => setVisibleModal(false)}
+        ></div>
         {visibleModal && <Modal />}
       </div>
     </div>
