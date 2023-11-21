@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import MainProvider from './context/MainContext';
 import App from './App';
+import Modal from './components/Modal';
 
 const Root = () => {
   return (
