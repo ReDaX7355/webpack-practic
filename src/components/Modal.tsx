@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 
-const Modal = () => {
+interface ModalProps {
+  isActive: boolean;
+  onClose: () => void;
+  children: ReactNode;
+  top?: string;
+  left?: string;
+}
+
+const Modal: FC<ModalProps> = ({
+  isActive,
+  onClose,
+  children,
+  top = '10',
+  left = '0',
+}) => {
+  const styles = `block absolute top-${top} left-[${left}px] min-w-[150px] bg-white shadow p-4 rounded z-20`;
+
+  if (!isActive) return null;
   return (
-    <div className="block absolute top-8 left-3 w-[150px] bg-white shadow px-3 py-6 rounded z-20 select-none text-center">
-      <div className="flex flex-col gap-3">
-        <p className="hover:text-primary cursor-pointer">Профиль</p>
-        <p className="hover:text-primary cursor-pointer">Выйти</p>
-      </div>
+    <div>
+      <div className={isActive ? 'back-active' : ''} onClick={onClose}></div>
+      <div className={styles}>{children}</div>
     </div>
   );
 };

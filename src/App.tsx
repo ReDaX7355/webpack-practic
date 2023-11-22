@@ -4,6 +4,11 @@ import Modal from './components/Modal';
 
 const App = () => {
   const [visibleModal, setVisibleModal] = useState(false);
+
+  const closeModal = () => {
+    setVisibleModal(false);
+  };
+
   return (
     <div className=" container mx-auto flex items-center">
       <Link
@@ -38,7 +43,7 @@ const App = () => {
           stroke-width="1.5"
           stroke="currentColor"
           className="cog"
-          onClick={() => setVisibleModal((prev) => !prev)}
+          onClick={() => setVisibleModal(true)}
         >
           <path
             stroke-linecap="round"
@@ -51,11 +56,16 @@ const App = () => {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
-        <div
+        {/* <div
           className={visibleModal ? 'back-active' : ''}
           onClick={() => setVisibleModal(false)}
-        ></div>
-        {visibleModal && <Modal />}
+        ></div> */}
+        <Modal isActive={visibleModal} onClose={closeModal}>
+          <div className="flex flex-col gap-3">
+            <p className="hover:text-primary cursor-pointer">Профиль</p>
+            <p className="hover:text-primary cursor-pointer">Выйти</p>
+          </div>
+        </Modal>
       </div>
     </div>
   );
