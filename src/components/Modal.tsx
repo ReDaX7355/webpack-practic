@@ -4,18 +4,18 @@ interface ModalProps {
   isActive: boolean;
   onClose: () => void;
   children: ReactNode;
-  top?: string;
-  left?: string;
+  top?: number;
+  left?: number;
 }
 
 const Modal: FC<ModalProps> = ({
   isActive,
   onClose,
   children,
-  top = '10',
-  left = '0',
+  top = 8,
+  left = 8,
 }) => {
-  const styles = `block absolute top-${top} left-[${left}px] min-w-[150px] bg-white shadow p-4 rounded z-20`;
+  const styles = `block absolute top-${top} left-${left} min-w-[150px] bg-white shadow p-4 rounded z-20`;
 
   if (!isActive) return null;
   return (

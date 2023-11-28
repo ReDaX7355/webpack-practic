@@ -36,6 +36,7 @@ const App = () => {
         Todos
       </Link>
       <div className="relative">
+        {/* <button  */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -45,6 +46,7 @@ const App = () => {
           className="cog"
           onClick={() => setVisibleModal(true)}
         >
+          >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -56,11 +58,13 @@ const App = () => {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
+        {/* </button> */}
+
         {/* <div
           className={visibleModal ? 'back-active' : ''}
           onClick={() => setVisibleModal(false)}
         ></div> */}
-        <Modal isActive={visibleModal} onClose={closeModal}>
+        <Modal isActive={visibleModal} onClose={closeModal} top={10} left={10}>
           <div className="flex flex-col gap-3">
             <p className="hover:text-primary cursor-pointer">Профиль</p>
             <p className="hover:text-primary cursor-pointer">Выйти</p>
