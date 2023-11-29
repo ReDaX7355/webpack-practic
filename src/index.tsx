@@ -13,11 +13,10 @@ import ErrorBoundary from './ErrorBoundary';
 import Auth from './Auth';
 import Tickets from './components/Tickets/Tickets';
 import TicketPage from './TicketPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import Todos from './Todos';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Error401 from './components/Error401';
-import ProtectedRoute from './components/ProtectedRoute';
-import { getAllTickets } from './api/requests';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,9 +26,9 @@ const router = createBrowserRouter(
       <Route
         path="/tickets"
         element={
-          // <ProtectedRoute>
-          <Tickets />
-          // </ProtectedRoute>
+          <ProtectedRoute>
+            <Tickets />
+          </ProtectedRoute>
         }
       />
       <Route path="/ticket/:ticket_number" element={<TicketPage />} />

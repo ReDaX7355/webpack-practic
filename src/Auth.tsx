@@ -37,7 +37,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto border border-gray-100 p-12 rounded shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)]">
+    <div className="max-w-lg mx-auto bg-white border border-gray-100 p-12 rounded shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)]">
       <h3 className="text-center text-xl font-bold">
         {registration ? 'Регистрация' : 'Вход'}
       </h3>
