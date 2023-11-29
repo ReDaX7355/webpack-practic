@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 type initState = {
   auth: boolean;
-  login: string;
+  user: userDataType | [] | string;
 };
 
 const defaultState: initState = {
   auth: false,
-  login: '',
+  user: [],
 };
 
 type userDataType = {
@@ -23,7 +23,7 @@ type userDataType = {
 
 type valueContextType = {
   state: initState;
-  signIn: (login: string, password: string) => void;
+  signIn: (userData: userDataType) => void;
   signUp: ({ login, email, password, full_name }: userDataType) => void;
 };
 
@@ -35,7 +35,7 @@ interface ContextProps {
 
 type actionType = {
   type: string;
-  payload: string;
+  payload: string | userDataType;
 };
 
 // type reduserTypes = {
@@ -49,7 +49,7 @@ const mainReduser: Reducer<initState, actionType> = (
 ): initState => {
   switch (action.type) {
     case 'login':
-      return { ...state, auth: true, login: action.payload };
+      return { ...state, auth: true, user: action.payload };
     default:
       return state;
   }
@@ -60,14 +60,14 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const signIn = (login: string, password: string) => {
+  const signIn = (userData: userDataType) => {
     axios
-      .get(`http://localhost:3000/users?login=${login}`)
+      .get(`http://localhost:3000/users?login=${userData.login}`)
       .then((res) => {
         console.log(res);
-        if (res.data.length == 1) {
-          if (res.data[0].password == password) {
-            dispatch({ type: 'login', payload: login });
+        if (res.data) {
+          if (res.data[0].password == userData.password) {
+            dispatch({ type: 'login', payload: res.data[0] });
             navigate('/tickets');
           } else {
             alert('Неверный логин или пароль!');
@@ -102,7 +102,13 @@ const MainProvider: FC<ContextProps> = ({ children }) => {
       };
 
       axios.post('http://localhost:3000/users', newUser).then((res) => {
-        if (res.status == 201) signIn?.(login, password);
+        if (res.status == 201)
+          signIn?.({
+            login,
+            email,
+            password,
+            full_name,
+          });
       });
     }
   };

@@ -1,24 +1,40 @@
-import React, { FC, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getTicketsByKey } from './api/requests';
+import ITicket from './types/ITicket';
 const TicketPage: FC = () => {
-  const { ticket_number } = useParams();
+  const [ticket, setTicket] = useState<ITicket | []>([]);
 
-  const navigate = useNavigate();
+  let { ticket_number } = useParams();
+  
+  useEffect(() => {
+    localStorage.setItem('currentTicketId', ticket_number || '');
+    getTicketsByKey('ticket_number', ticket_number).then((res) => {
+      if (res) {
+        setTicket(res[0]);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!ticket_number) {
-      localStorage.setItem('currentTicketId', ticket_number || '');
-      navigate('/tickets');
+      getTicketsByKey(
+        'ticket_number',
+        localStorage.getItem('currentTicketId') ?? ''
+      ).then((res) => {
+        if (res) {
+          setTicket(res[0]);
+        }
+      });
     }
-
-    return () => {
-      localStorage.removeItem('currentTicketId');
-    };
   }, []);
 
   return (
     <div className="container mx-auto">
-      <p>Заявка номер: {ticket_number}</p>
+      <p className="text-xl text-bold">Заявка номер: {ticket.ticket_number}</p>
+      <div>
+        <span>{ticket.created_at}</span>
+      </div>
     </div>
   );
 };

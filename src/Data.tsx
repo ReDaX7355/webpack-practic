@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 import IRequest from './types/Request';
 import { v4 } from 'uuid';
+import { Context } from './context/MainContext';
 
 const Data = () => {
   const [titleRequest, setTitleRequest] = useState('');
@@ -13,6 +14,16 @@ const Data = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useEffect(() => {}, []);
+
+  const { state } = useContext(Context);
+  console.log(state);
+
+  const clearFields = useCallback(() => {
+    setTitleRequest('');
+    setDescriptionRequest('');
+    setTypeRequest('incident');
+    setPriorityRequest('');
+  }, []);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,9 +42,16 @@ const Data = () => {
       created_at: new Date().toLocaleString('ru-RU').replace(',', ''),
       closed_at: '',
       type_request: typeRequest,
-      user_id: 0,
+      applicant_name: state?.user?.full_name,
       assigned_to: '',
-      messages: [],
+      messages: [
+        {
+          timestamp: new Date().toLocaleString('ru-RU').replace(',', ''),
+          author: state?.user?.full_name,
+          visible_to: 'all',
+          massage: descriptionRequest,
+        },
+      ],
       priority: priorityRequest,
       completed: false,
     };
@@ -48,6 +66,8 @@ const Data = () => {
           console.log(response.statusText);
         }
       });
+
+    clearFields();
   };
 
   return (

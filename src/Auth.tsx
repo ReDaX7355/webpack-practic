@@ -32,7 +32,7 @@ const Auth = () => {
     if (registration) {
       signUp?.(userData);
     } else {
-      signIn?.(data.login, data.password);
+      signIn?.(userData);
     }
   };
 
