@@ -17,17 +17,18 @@ const Messages: FC<MessagesProps> = ({ messages }) => {
   return (
     <div className="mt-10 overflow-y-auto h-[100px]" id="messages_block">
       <ul className="flex flex-col gap-4">
-        {messages &&
-          messages.map((message) => (
-            <li className="border-b-2 border-gray-100 pb-4">
-              <div className="flex gap-3 items-center">
-                <p className="font-medium">{message.author}</p>
-                <p className="text-gray-500 text-sm">{message.timestamp}</p>
-              </div>
+        {messages?.length > 0
+          ? messages.map((message) => (
+              <li className="border-b-2 border-gray-100 pb-4">
+                <div className="flex gap-3 items-center">
+                  <p className="font-medium">{message.author}</p>
+                  <p className="text-gray-500 text-sm">{message.timestamp}</p>
+                </div>
 
-              <p>{message.massage}</p>
-            </li>
-          ))}
+                <p>{message.massage}</p>
+              </li>
+            ))
+          : 'Комментариев нет'}
       </ul>
     </div>
   );

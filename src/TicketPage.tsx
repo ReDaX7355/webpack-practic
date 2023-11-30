@@ -91,7 +91,7 @@ const TicketPage: FC = () => {
           </div>
         </div>
         <div className="grow">
-          <h1 className="text-2xl font-bold">Переписка</h1>
+          <h1 className="text-2xl font-bold">Комментарии к заявке</h1>
           <Messages messages={ticket.messages} />
         </div>
       </div>
