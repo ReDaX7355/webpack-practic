@@ -1,9 +1,5 @@
-type messageType = {
-  timestamp: string;
-  author: string;
-  visible_to: string;
-  massage: string;
-};
+import Imessage from "./Imessage";
+
 
 interface ITicket {
   id: string;
@@ -17,7 +13,7 @@ interface ITicket {
   assigned_to: string;
   priority: string;
   completed: boolean;
-  messages: messageType[];
+  messages: Imessage[];
 }
 
 export default ITicket;

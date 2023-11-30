@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTicketsByKey } from './api/requests';
 import ITicket from './types/ITicket';
+import Messages from './components/Messages';
 const TicketPage: FC = () => {
   const [ticket, setTicket] = useState<ITicket | []>([]);
 
@@ -30,9 +31,9 @@ const TicketPage: FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto bg-white h-[700px] rounded p-7">
-      <div className="flex">
-        <div className="grow">
+    <div className="container mx-auto bg-white md:h-[700px] rounded p-7">
+      <div className="flex md:flex-row flex-col md:gap-0 gap-20">
+        <div className="grow md:border-b-2 md:border-gray-100 border-none">
           <h1 className="text-2xl font-bold">Данные заявки</h1>
           <div className="mt-10">
             <ul className="flex flex-col gap-4">
@@ -89,7 +90,10 @@ const TicketPage: FC = () => {
             </ul>
           </div>
         </div>
-        <div className="grow"></div>
+        <div className="grow">
+          <h1 className="text-2xl font-bold">Переписка</h1>
+          <Messages messages={ticket.messages} />
+        </div>
       </div>
     </div>
   );
