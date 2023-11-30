@@ -35,7 +35,7 @@ const TicketPage: FC = () => {
         <div className="grow">
           <h1 className="text-2xl font-bold">Данные заявки</h1>
           <div className="mt-10">
-            <ul className="flex flex-col gap-5">
+            <ul className="flex flex-col gap-4">
               <li className="text-primary">
                 <p className="text-sm">Номер заявки: </p>
                 <p className="font-medium">{ticket.ticket_number}</p>
