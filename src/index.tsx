@@ -4,8 +4,10 @@ import './style.css';
 import {
   Route,
   RouterProvider,
+  BrowserRouter,
   createBrowserRouter,
   createRoutesFromElements,
+  Routes,
 } from 'react-router-dom';
 import Root from './Root';
 import Data from './Data';
@@ -18,25 +20,7 @@ import Todos from './Todos';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Error401 from './components/Error401';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
-      <Route index element={<Auth />} />
-      <Route path="/data" element={<Data />} />
-      <Route
-        path="/tickets"
-        element={
-          // <ProtectedRoute>
-          <Tickets />
-          // </ProtectedRoute>
-        }
-      />
-      <Route path="/ticket/:ticket_number" element={<TicketPage />} />
-      <Route path="/todos" element={<Todos />} />
-      <Route path="/401" element={<Error401 />} />
-    </Route>
-  )
-);
+// const router = createBrowserRouter(createRoutesFromElements());
 
 const queryClient = new QueryClient();
 
@@ -49,6 +33,24 @@ const rootElement = document.getElementById('root') as HTMLElement;
 const root = createRoot(rootElement);
 root.render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
+          <Route index element={<Auth />} />
+          <Route path="/data" element={<Data />} />
+          <Route
+            path="/tickets"
+            element={
+              // <ProtectedRoute>
+              <Tickets />
+              // </ProtectedRoute>
+            }
+          />
+          <Route path="/ticket/:ticket_number" element={<TicketPage />} />
+          <Route path="/todos" element={<Todos />} />
+          <Route path="/401" element={<Error401 />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </QueryClientProvider>
 );
